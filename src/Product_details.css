@@ -1,0 +1,137 @@
+.airplane {
+  width: 70px;
+}
+
+.arrow {
+  width: 52px;
+}
+
+.buttons {
+  width: 200px;
+  border-color: black !important;
+}
+
+.ship {
+  width: 70px;
+}
+
+.truck {
+  width: 70px;
+}
+
+.col_center {
+  margin-right: 74px;
+}
+
+.view_detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-img {
+  width: 34px;
+  height: 39px;
+}
+
+.date-img {
+  width: 34px;
+  height: 39px;
+}
+
+.location-img {
+  width: 34px;
+  height: 39px;
+}
+
+.company-img {
+  width: 34px;
+  height: 39px;
+}
+
+.detials {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 12px;
+}
+
+.para {
+  width: 100px;
+}
+
+.row-date {
+  background-color: #E1F5FE;
+}
+
+.row-time {
+  background-color: whitesmoke;
+}
+
+.row-location {
+  background-color: #E1F5FE;
+}
+
+.row-company {
+  background-color: whitesmoke;
+}
+
+.row-Inspection {
+  background-color: #E1F5FE;
+}
+
+.row-vaccination {
+  background-color: whitesmoke;
+}
+
+.tbl {
+  width: 94%;
+}
+
+.tbl tr {
+  height: 50px;
+}
+
+.time {
+  font-weight: 700;
+}
+
+.tr {
+  height: 50px;
+}
+
+.yes {
+  width: 10%;
+}
+
+.no {
+  width: 8%;
+}
+
+.buttons:hover {
+  background-color: rgb(77, 167, 251) !important;
+  font-weight: 700;
+}
+
+.page {
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right {
+  margin-bottom: 2% !important;
+}
