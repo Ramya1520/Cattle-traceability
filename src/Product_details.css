@@ -1,6 +1,4 @@
-.airplane {
-  width: 70px;
-}
+
 
 .arrow {
   width: 52px;
@@ -23,12 +21,6 @@
   margin-right: 74px;
 }
 
-.view_detail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .time-img {
   width: 34px;
   height: 39px;
@@ -39,22 +31,7 @@
   height: 39px;
 }
 
-.location-img {
-  width: 34px;
-  height: 39px;
-}
 
-.company-img {
-  width: 34px;
-  height: 39px;
-}
-
-.detials {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-left: 12px;
-}
 
 .para {
   width: 100px;
@@ -114,7 +91,7 @@
 }
 
 .page {
-  height: 92vh;
+  height: 93vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,12 +103,15 @@
   align-items: center;
 }
 
-.row {
+/* .row {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .right {
-  margin-bottom: 2% !important;
+  /* margin-bottom: 2% !important; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

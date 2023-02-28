@@ -1,0 +1,33 @@
+.rows-0 {
+    background-color: #d5eaff;
+  }
+  
+  .rows-1 {
+    background-color:white
+  }
+
+ .create-report {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    row-gap: 2px !important;
+ } 
+ .report {
+    height: 94vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.report-table{
+    width:100%;
+    margin-bottom: 8%;
+}
+.create-new {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  row-gap: 2px !important;
+}
+.create_new {
+  margin-top: 2%;
+}

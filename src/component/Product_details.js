@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Row, Col, Button, Card } from 'react-bootstrap';
 import arrow from '../assets/Down_arrow.png';
 import '../Product_details.css';
-import airplane from '../assets/Airplane.png';
 import ship from '../assets/Ship.png';
 import truck from '../assets/Truck.webp';
 import Header from './Header';
@@ -19,28 +18,18 @@ const Product_details = () => {
     }
 
     return (
-        <div className='full-page'>
-            <Header />
+        <div>
+          
+    
             <div className='page'>
-                <div className="container-fluid buttons_details ">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-6 left ">
-                            <div className="buttons_detail">
+                            <div>
+                                
                                 <Row>
                                     <Col>
-                                        <Button className='buttons' variant="light" onClick={() => show_details(details[0])}>Raw Material Supplier</Button>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className='col_center'>
-                                        <img src={airplane} onClick={() => show_details(transport[0])} alt="airplane" className='airplane'></img>
-                                        <img src={arrow} alt="arrow" className='arrow '></img>
-
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Button className='buttons' variant="light" onClick={() => show_details(details[1])}>Manufacturer</Button>
+                                        <Button className='buttons' variant="light" onClick={() => show_details(details[1])}>Farm</Button>
                                     </Col>
                                 </Row>
                                 <Row>
@@ -51,23 +40,12 @@ const Product_details = () => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Button className='buttons' variant="light" onClick={() => show_details(details[2])}>Warehouse</Button>
+                                        <Button className='buttons' variant="light" onClick={() => show_details(details[2])}>Slaughterhouse</Button>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col className='col_center'>
                                         <img src={truck} onClick={() => show_details(transport[2])} alt="truck" className='truck'></img>
-                                        <img src={arrow} alt="down_arrow" className='arrow'></img>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Button className='buttons' variant="light" onClick={() => show_details(details[3])}>Distributor</Button>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className='col_center'>
-                                        <img src={airplane} alt="airplane" onClick={() => show_details(transport[3])} className='airplane'></img>
                                         <img src={arrow} alt="down_arrow" className='arrow'></img>
                                     </Col>
                                 </Row>

@@ -1,10 +1,10 @@
-.navbar{
+/* .navbar{
     background-color: rgb(43, 43, 43);
-}
+} */
 .link{
     color: white;
 }
-h6{
+/* h6{
     margin-top: 3%;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@ h6{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     background-color:azure;
     width: 40%;
-}
+} */
 .title {
     justify-content: center;
     align-items: center;
@@ -27,15 +27,16 @@ h6{
 .type{
     margin-bottom: 84%;
 }
-.row-0 {
+/* .row-0 {
     background-color:rgb(197, 235, 250)
   }
   
   .row-1 {
     background-color: #f0eded;
-  }
+  } */
   .tbl{
     margin-top:3%;
+    margin-left: 6%;
   }
 
   .second {
@@ -49,7 +50,6 @@ h6{
 }
 .logistics{
     position: fixed;
-    margin-top: -11%;
 }
 .imgl{
     width: 12%;

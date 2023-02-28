@@ -1,6 +1,12 @@
-.header_content {
+/* .header_content {
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
 }
+.navbar {
+    height: 9%;
+}
+.v{
+    position: fixed;
+} */
