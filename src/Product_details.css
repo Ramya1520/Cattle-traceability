@@ -1,21 +1,28 @@
 
 
-.arrow {
-  width: 52px;
-}
+
 
 .buttons {
-  width: 200px;
+  width: 239px;
+  height: 41px;
   border-color: black !important;
 }
 
 .ship {
-  width: 70px;
-}
+  width: 46px;
+  margin-left: 17px;
+  position: absolute;
+  margin-top: 27px
+ }
 
 .truck {
-  width: 70px;
-}
+  width: 64px;
+  position: absolute;
+  left: 226px;
+  top: 365px;
+
+
+} 
 
 .col_center {
   margin-right: 74px;
@@ -86,12 +93,12 @@
 }
 
 .buttons:hover {
-  background-color: rgb(77, 167, 251) !important;
+  background-color: rgb(130 190 245) !important;
   font-weight: 700;
 }
 
 .page {
-  height: 93vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,15 +110,28 @@
   align-items: center;
 }
 
-/* .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
 
 .right {
-  /* margin-bottom: 2% !important; */
+
   display: flex;
   justify-content: center;
   align-items: center;
+}
+ .ship-arrow {
+
+  margin-left: 30px;
+  width: 112px;
+}
+
+.arrow {
+   margin-left: 46px;
+  width: 112px; 
+}
+.truck-arrow{
+  margin-left: 14px;
+
+}
+.card_detail{
+  width: -webkit-fill-available;
 }

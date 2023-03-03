@@ -2,26 +2,61 @@ import React, { useState } from 'react';
 import { Row, Col, Button, Card } from 'react-bootstrap';
 import arrow from '../assets/Down_arrow.png';
 import '../Product_details.css';
-import ship from '../assets/Ship.png';
-import truck from '../assets/Truck.webp';
+import ship from '../assets/ship.svg';
+import truck from '../assets/truck.svg';
 import Header from './Header';
 import No from '../assets/No.png';
 import Yes from '../assets/Yes.png';
+import { Navbar, Nav } from "react-bootstrap";
+import { Link, Navigate } from 'react-router-dom';
+import Cattle from '../assets/cattle.png';
+import Logout from "./Logout";
+
 
 const Product_details = () => {
     const details = [{ Title: "Raw Material Supplier", Time: "13.40", Date: "11/11/2022", Location: "INDIA", Company_Name: "ABC_Pvt_Ltd", Result_of_Inspection: "yes", Vaccination_Details: "Yes" }, { Title: "Manufacturer", Date: "12/11/2022", Location: "INDIA", Company_Name: "ABC_Pvt_Ltd", Result_of_Inspection: "No", Vaccination_Details: "No", Time: "12.00" }, { Title: "Warehouse", Date: "13/11/2022", Location: "INDIA", Company_Name: "ABC_Pvt_Ltd", Time: "12.30", Result_of_Inspection: "yes", Vaccination_Details: "Yes" }, { Title: "Distributor", Date: "14/11/2022", Location: "China", Time: "12.30", Company_Name: "ABC_Pvt_Ltd", Result_of_Inspection: "yes", Vaccination_Details: "No" }, { Title: "Seller", Date: "15/11/2022", Location: "China", Company_Name: "ABC_Pvt_Ltd", Result_of_Inspection: "No", Vaccination_Details: "Yes", Time: "13.44" }];
     const transport = [{ Title: "Raw Material Supplier", Time: "13.40", Date: "11/11/2022", Location: "INDIA", Company_Name: "ERF_Pvt_Ltd", }, { Title: "Manufacturer", Date: "12/11/2022", Location: "INDIA", Company_Name: "FGR_Pvt_Ltd", Time: "12.00" }, { Title: "Warehouse", Date: "13/11/2022", Location: "INDIA", Company_Name: "KKK_Pvt_Ltd", Time: "12.30", }, { Title: "Distributor", Date: "14/11/2022", Location: "China", Time: "12.30", Company_Name: "ABC_Pvt_Ltd", }, { Title: "Seller", Date: "15/11/2022", Location: "China", Company_Name: "ABC_Pvt_Ltd", Time: "13.44" }];
     const [show_detail, setShow_detail] = useState(null);
-
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [show, setShow] = useState(false);
     const show_details = (show) => {
         setShow_detail(show);
     }
+    const Product_id="EMP002"
+ 
 
+    const navbarClass = scrollPosition > 0 ? "navbar1 shadow" : "navbar1";
     return (
         <div>
-          
-    
             <div className='page'>
+            <Navbar className={navbarClass} expand="lg" fixed="top">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="">
+              <div className="title1">
+                <Nav.Link href="#home" className="link page-title">
+                  <span className="nav-link-name">
+                    <img src={Cattle} className="cattle" alt="Cattle" />
+                    <h5 className="cattle-trace">Cattle Traceability </h5>
+                  </span>
+                  <header>
+                    <div className="header-toggle" onClick={() => setShow(!show)}>
+                     
+                    </div>
+                  </header>
+                </Nav.Link>
+              </div>
+              <div className="btn-id">
+                <Nav.Link href="#home" className="link  link2">
+                  <Button variant="light" className="id" >
+                    User ID: {Product_id}
+                  </Button>
+            
+                </Nav.Link>
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-6 left ">
@@ -34,8 +69,10 @@ const Product_details = () => {
                                 </Row>
                                 <Row>
                                     <Col className='col_center'>
+                                        <div className='ship-arrow'>
                                         <img src={ship} onClick={() => show_details(transport[1])} alt="Ship" className='ship'></img>
-                                        <img src={arrow} alt="down_arrow" className='arrow'></img>
+                                        <img src={arrow} alt="down_arrow" className='ship-arrow'></img>
+                                        </div>
                                     </Col>
                                 </Row>
                                 <Row>
@@ -45,8 +82,10 @@ const Product_details = () => {
                                 </Row>
                                 <Row>
                                     <Col className='col_center'>
+                                        <div className='truck-arrow'>
                                         <img src={truck} onClick={() => show_details(transport[2])} alt="truck" className='truck'></img>
                                         <img src={arrow} alt="down_arrow" className='arrow'></img>
+                                        </div>
                                     </Col>
                                 </Row>
                                 <Row>
