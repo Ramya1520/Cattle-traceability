@@ -1,6 +1,7 @@
 
 import React from "react";
-import './Slaughterhouse.css';
+// import './Slaughterhouse.css';
+import './Farm_user_dashboard.css'
 import 'react-circular-progressbar/dist/styles.css';
 import 'react-circular-progressbar/dist/styles.css';
 import "react-circular-progressbar/dist/styles.css";
@@ -19,7 +20,8 @@ import { useEffect } from "react";
 import signout from "../assets/signout.png"
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import Logout from "./Logout";
+import profile from '../assets/profile.svg';
 
 const Seller_dashboard = (props) => {
   // const [details, setDetails] = useState()
@@ -35,12 +37,13 @@ const Seller_dashboard = (props) => {
 
   ;
 
-  const details = { location: { "india": 50, "china": 30, "america": 20 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_weights: { "below_100": 30, "range_100_150": 20, "more_150": 50 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "false", "farm_name": "ogo", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "variety",'package_count':'133'}, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "cultivatio" ,'package_count':'193'}, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "ogo",'package_count':'93' }, { "unique_id": "PRO4", "weight": 120, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "count_perday": "22", "count_perweek": "49", "farm_name": "ogo",'package_count':'48' }], package_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, package_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 } }
-  const titles = Object.keys(details.overall_report[0]);
+  const details = {returnables:{ name: "Bangalore Farmhouse", location: { "india": 50, "china": 30, "america": 20 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_weights: { "below_100": 30, "range_100_150": 20, "more_150": 50 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "false", "farm_name": "ogo", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "variety",'package_count':'133'}, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "cultivatio" ,'package_count':'193'}, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "ogo",'package_count':'93' }, { "unique_id": "PRO4", "weight": 120, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "count_perday": "22", "count_perweek": "49", "farm_name": "ogo",'package_count':'48' }], package_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, package_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }} }
+  const titles = Object.keys(details.returnables.overall_report[0]);
+  
   const [columnchart, setColumnchart] = useState({
     series: [{
-      name: 'Hours', data: [{ x: '0-3hrs', y: details.package_count_perday.hr_0_3 }, { x: '4-7hrs', y: details.package_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.package_count_perday.hr_8_11, },
-      { x: '12-15hrs', y: details.package_count_perday.hr_12_15, }, { x: '16-19hrs', y: details.package_count_perday.hr_16_19, }, { x: '20-23hrs', y: details.package_count_perday.hr_20_23, },]
+      name: 'Hours', data: [{ x: '0-3hrs', y: details.returnables.package_count_perday.hr_0_3 }, { x: '4-7hrs', y: details.returnables.package_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.returnables.package_count_perday.hr_8_11, },
+      { x: '12-15hrs', y: details.returnables.package_count_perday.hr_12_15, }, { x: '16-19hrs', y: details.returnables.package_count_perday.hr_16_19, }, { x: '20-23hrs', y: details.returnables.package_count_perday.hr_20_23, },]
     }],
     options: {
       chart: {
@@ -113,7 +116,7 @@ const Seller_dashboard = (props) => {
   };
 
 
-  details.overall_report.forEach((item) => {
+  details.returnables.overall_report.forEach((item) => {
     if (!options.unique_id.includes(item.unique_id)) {
       options.unique_id.push(item.unique_id);
     }
@@ -180,17 +183,21 @@ const Seller_dashboard = (props) => {
     setTitle(event.target.value);
     setOption(null);
   };
-
+  const App_user="EMP003"
+  function Manage() {
+    console.log("&&")
+    navigate("/manage", {state: {user: App_user}});
+  } 
   const handleOptionChange = (event) => {
     setOption(event.target.value);
   };
 
   const filterData = () => {
     if (!title || !option) {
-      return details.overall_report;
+      return details.returnables.overall_report;
     }
 
-    const reports = details.overall_report.filter(report => {
+    const reports = details.returnables.overall_report.filter(report => {
       if (title === 'unique_id' || title === 'farm_name' || title === 'location' || title === 'date_of_arrival' || title === 'time_of_arrival' || title === 'farm_name') {
         return report[title] === option;
       }
@@ -217,6 +224,9 @@ const Seller_dashboard = (props) => {
     return reports;
   };
   console.log("***")
+  const View_more=()=>{
+    navigate('/farmusermanage',{state:{de:details}})
+    }
   const Cattlecountchart = () => {
     function handleOptionChange(value) {
       setSelectedOption(value)
@@ -225,11 +235,11 @@ const Seller_dashboard = (props) => {
           series: [
             {
               name: 'Hours',
-              data: [{ x: '0-3hrs', y: details.package_count_perday.hr_0_3, }, { x: '4-7hrs', y: details.package_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.package_count_perday.hr_8_11, }, { x: '12-15hrs', y: details.package_count_perday.hr_12_15, },
+              data: [{ x: '0-3hrs', y: details.returnables.package_count_perday.hr_0_3, }, { x: '4-7hrs', y: details.returnables.package_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.returnables.package_count_perday.hr_8_11, }, { x: '12-15hrs', y: details.returnables.package_count_perday.hr_12_15, },
               {
                 x: '16-19hrs',
-                y: details.package_count_perday.hr_16_19,
-              }, { x: '20-23hrs', y: details.package_count_perday.hr_20_23, },]
+                y: details.returnables.package_count_perday.hr_16_19,
+              }, { x: '20-23hrs', y: details.returnables.package_count_perday.hr_20_23, },]
             }],
           options: {
             chart: {
@@ -264,7 +274,7 @@ const Seller_dashboard = (props) => {
           series: [
             {
               name: 'Month',
-              data: [{ x: 'Mon', y: details.package_count_perweek.day1, }, { x: 'Tues', y: details.package_count_perweek.day2, }, { x: 'Wed', y: details.package_count_perweek.day3, }, { x: 'Thurs', y: details.package_count_perweek.day4, }, { x: 'Fri', y: details.package_count_perweek.day5, }, { x: 'Sat', y: details.package_count_perweek.day6, },]
+              data: [{ x: 'Mon', y: details.returnables.package_count_perweek.day1, }, { x: 'Tues', y: details.returnables.package_count_perweek.day2, }, { x: 'Wed', y: details.returnables.package_count_perweek.day3, }, { x: 'Thurs', y: details.returnables.package_count_perweek.day4, }, { x: 'Fri', y: details.returnables.package_count_perweek.day5, }, { x: 'Sat', y: details.returnables.package_count_perweek.day6, },]
             }],
           options: {
             chart: {
@@ -317,7 +327,7 @@ const Seller_dashboard = (props) => {
     console.log(india)
     console.log(china)
     console.log(america)
-    console.log(details.location.america, "%%")
+    console.log(details.returnables.location.america, "%%")
     console.log(data)
     console.log(india)
     console.log(width)
@@ -378,9 +388,11 @@ const Seller_dashboard = (props) => {
   };
 
   const handleClick = () => {
-    setTable(true)
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   }
-
   const Sidebar = () => {
     return (
       <div>
@@ -392,12 +404,12 @@ const Seller_dashboard = (props) => {
                 <Nav.Link href="#home" className="link page-title">
                   <span className="nav-link-name">
                     <img src={Cattle} className="cattle" alt="Cattle" />
-                    <h5>Cattle Traceability </h5>
+                    <h5 className="cattle-trace">Cattle Traceability </h5>
                   </span>
                   <header>
                     <div className="header-toggle" onClick={() => setShow(!show)}>
                       <i
-                        className={`fas fa-bars ${show ? "fa-solid fa-xmark" : null} `}
+                       className={`fas fa-bars ${show ? "fa-solid fa-xmark" : null} `}
                       ></i>
                     </div>
                   </header>
@@ -405,12 +417,10 @@ const Seller_dashboard = (props) => {
               </div>
               <div className="btn-id">
                 <Nav.Link href="#home" className="link  link2">
-                  <Button variant="light" className="id">
-                    User ID: EMP001
+                  <Button variant="light" className="id" >
+                    User ID: {App_user}
                   </Button>
-                  <Button variant="light" className="logout">
-                    Logout <img className="signout" src={signout}></img>
-                  </Button>
+               <Logout/>
                 </Nav.Link>
               </div>
             </Nav>
@@ -421,40 +431,38 @@ const Seller_dashboard = (props) => {
             <nav className='nav'>
               <div className="nav1">
                 <div className='nav-list'>
-                  <Link to='' className='nav-link active'>
+                  <div to='' className='nav-link active'>
                     <i className='fas fa-home nav-link-icon'></i>
                     <span className='nav-link-name word-home'>Home</span>
-                  </Link>
-                  <Link to='/manage' className='nav-link'>
+                  </div>
+                  
+                  <div onClick={()=>handleClick()} className='nav-link'>
+                    {/* <i class='fas fa-x-ray nav-link-icon'></i> */}
+                    <img src={profile} className="profile-icon"></img>
+                    <span className='nav-link-name report-word'>Reports</span>
+                  </div>
+                  <div onClick={()=>Manage()}className='nav-link'>
                     <i className='fas fa-edit nav-link-icon'></i>
-                    <span className='nav-link-name word'>Manage</span>
-                  </Link>
-                  <Link onClick={handleClick} className='nav-link'>
-                    <i class='fas fa-x-ray nav-link-icon'></i>
-                    <span className='nav-link-name'>Reports</span>
-                  </Link>
-                  <Link to='' className='nav-link profile'>
-                    <i className='fas fa-user nav-link-icon'></i>
-                    <span className='nav-link-name profile-text'>Profile</span>
-                  </Link>
+                    <span className='nav-link-name manage-word'>Manage</span>
+                  </div>
+                  <div to=''  className='nav-link'>
+                    <i className='fas fa-user nav-link-icon' ></i>
+                    <span className='nav-link-name profile-text' >Profile</span>
+                  </div>
                 </div>
               </div>
             </nav>
           </aside>
-          {/* {details && (
-          
-               
-                )} */}
           <div className="container-fluid all-cards ">
             <div className="row ch">
               <div className="col-lg-6 ">
                 <div className="card card-1">
-                  {Piechart(details.location.india, details.location.china, details.location.america, ['india', 'china', 'america'], "LOCATION", 390)}
+                  {Piechart(details.returnables.location.india, details.returnables.location.china, details.returnables.location.america, ['india', 'china', 'america'], "LOCATION", 390)}
                 </div>
               </div>
               <div className="col-lg-6 ">
                 <div className="card card-1">
-                  {Piechart(details.farm_name.cultivatio, details.farm_name.ogo, details.farm_name.variety, ['cultivatio', 'Ogo', 'Variety'], "FARM NAME", 393)}
+                  {Piechart(details.returnables.farm_name.cultivatio, details.returnables.farm_name.ogo, details.returnables.farm_name.variety, ['cultivatio', 'Ogo', 'Variety'], "FARM NAME", 393)}
                 </div>
               </div>
               <div className="col-lg-6 ">
@@ -470,7 +478,7 @@ const Seller_dashboard = (props) => {
               <div>
                 {details &&
                   <div>
-                    {table === true &&
+              
                       <div>
                         <div>
                         </div>
@@ -481,8 +489,10 @@ const Seller_dashboard = (props) => {
                                 <h6>REPORTS</h6>
                               </div>
                               <div className="table-header">
+                              <p className="sort">Sort by</p>
                                 <select id="title" name="title" className="dropdown-title" onChange={handleTitleChange}>
-                                  <option value="">Sort by</option>
+                                
+                                  <option value="">Select</option>
                                   {titles.map((title) => (
                                     <option key={title} value={title}>{title}</option>
                                   ))}
@@ -532,11 +542,14 @@ const Seller_dashboard = (props) => {
                                   </tbody>
                                 </table>
                               </div>
+                              <div className="view-more">
+                              <h6 onClick={() => View_more()} className="readmore">View more..</h6>
+                              </div> 
                             </Card.Body>
                           </Card>
                         </div>
                       </div>
-                    }
+                    
                   </div>
                 }
               </div>

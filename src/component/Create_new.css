@@ -1,12 +1,12 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login-page {
+.crt-page {
   width: 450px;
   padding: 8% 0 0;
   margin: auto;
 }
-.form {
+.form-create{
   position: relative;
   z-index: 1;
   background: #FFFFFF;
@@ -31,7 +31,6 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  
   width: 100%;
   border: 0;
   padding: 15px;
@@ -54,7 +53,7 @@
 .container {
   position: relative;
   z-index: 1;
-  max-width: 300px;
+  /* max-width: 300px; */
   margin: 0 auto;
 }
 .container:before, .container:after {
@@ -100,11 +99,68 @@ body {
 }
 .error {
   font-size: small;
-  color: #782a2a;
+  color: #cd1c1c;
   display: flex;
 justify-content: flex-start;
 }
 .fill-up{
   display: flex;
   justify-content: flex-start;
+  padding-bottom: 2%;
+  padding-top: 14px;
+}
+.options {
+  display: flex;
+  column-gap: 20px;
+}
+.property{
+  display: flex;
+  column-gap: 13px;
+}
+.p{
+  display: none !important;
+}
+.input-f {
+  display: flex;
+  column-gap: 12px;
+}
+.btns{
+  display: flex;
+  flex-direction: row;
+ 
+
+  column-gap: 12px;
+}
+.name-error{
+  display: flex;
+  column-gap: 123px;
+}
+.contract-name-error {
+  display: flex;
+    justify-content: center;
+    padding-left: 19%;
+}
+.crd{
+  height: 100vh;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.test-form {
+  width: 445px !important;
+}
+.add-property{
+  margin-bottom: 23px;
+}
+
+.save{
+  margin-bottom: 23px;
+}
+.error-msg{
+  display: flex;
+  justify-content: space-between;
+}
+.shipment-name{
+  display: flex;
+  justify-content: flex-end;
 }

@@ -5,150 +5,228 @@ import './Create_new.css'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useEffect } from 'react';
+
 
 function New_form() {
-    const [formData, setFormData] = useState({
-        userid: '',
-        contractName: '',
-        ID: '',
-        Name: '',
-        Designation: '',
-        Phone: '',
-        Mail: '',
-        Organization: ''
+
+    const [shipmentData, setShipmentData] = useState({
+        userid: "",
+        shipment: {
+            Name: "",
+            Source: "",
+            Destination: "",
+            Started: "",
+            Ended: "",
+            Logistics: "",
+            Vehicle: "",
+            Products: ""
+        }
     });
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
     const [formTableData, setFormTableData] = useState(null);
     const [formErrors, setFormErrors] = useState({});
     const location = useLocation();
+    const App_user = location.state?.user
+    const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const App_user = location.state?.user
-    const navigate=useNavigate()
+    const handleShow = () => setShow(true);
+  
+const handleSaveChanges=()=>{
+    console.log(shipmentData,"data")
+    // convertDateToTimestamp()
+    navigate('/manage', { state: { user: App_user } })
+}
+const convertDateToTimestamp = (date) => {
+    return Math.floor(date.getTime() / 1000);
+  };
 
+  
+const handleDateChange = () => {
+    const currentDate = new Date();
+    const currentTimestamp = convertDateToTimestamp(currentDate);
+  
+    setShipmentData({
+      ...shipmentData,
+      shipment: {
+        ...shipmentData.shipment,
+        Started: currentTimestamp,
+        Ended: currentTimestamp
+      }
+    });
+  };
    
+ 
+  
+ const handleSave = (event) => {
+if(shipmentData.shipment.Name &&shipmentData.shipment.Destination&&shipmentData.shipment.Logistics&&shipmentData.shipment.Products &&shipmentData.shipment.Source &&shipmentData.shipment.Vehicle){
+    const startTimestamp = startDate.getTime();
+    const endTimestamp = endDate.getTime();
+    shipmentData.shipment.Started=startTimestamp
+    shipmentData.shipment.Ended=endTimestamp
+    shipmentData.userid=App_user
+    console.log(startTimestamp, endTimestamp);
+    console.log(shipmentData,"P")
 
-    const handleSave = (event) => {
-        if (formData.ID && formData.Name && formData.Mail && formData.contractName && formData.Phone &&formData.Organization) {
-        setShow(true)  
-        }
-      
-     
-       if(show == true){
-            const formattedFormData = {
-                userid: formData.userid,
-                asset: {
-                    contractName: formData.contractName,
-                    assetValue: {
-                        ID: App_user,
-                        Name: formData.Name,
-                        Designation: formData.Designation,
-                        Phone: formData.Phone,
-                        Mail: formData.Mail,
-                        Organization: formData.Organization
-                    }
-                }
-            };
+    //     const fetchData = async () => {
+    //       const response = await fetch(process.env.REACT_APP_BACKEND_HOST + "", {
+    //         method: 'POST',
+    //         body: JSON.stringify(
+    //           {
+    //            shipmentData
+    //           }
+    //         ),
+    //         headers: {
+    //           'Content-type': 'application/json; charset=UTF-8',
+    //           'Authorization': 'Bearer ' + process.env.REACT_APP_BACKEND_ENDUSER_TOKEN
+    //           //process.env.BACKEND_ENDUSER_TOKEN
+    //         }
+    //       }).then(res => res.json())
+    //         .then(data => {
+    //           console.log(data);
+    //         })
+    //         .catch(err => console.log(err));
+        
+    //     fetchData();
+    //   };
+    handleShow()
+}
 
-            console.log("farmdata")
-            setFormTableData(formattedFormData);
-            setShowConfirmation(true);
-            console.log(formattedFormData)
-            navigate('/manage',{state :{user:App_user}})
-           
-        }
-    
-      
-        event.preventDefault();
+
+
         let errors = {};
-        if (!formData.userid) {
+
+        if (!shipmentData.userid) {
             errors.userid = "*User ID is required";
         }
-        if (!formData.contractName) {
-            errors.contractName = "*Contract Name is required";
+        if (!shipmentData.shipment.Name) {
+            errors.name = "*Shipment name is required";
         }
-        if (!formData.User) {
-            errors.User = "*User ID is required";
+        if (!shipmentData.shipment.Source) {
+            errors.source = "*Source is required";
+        }
+        if (!shipmentData.shipment.Destination) {
+            errors.destination = "*Destination is required";
+        }
+        if (!shipmentData.shipment.Logistics) {
+            errors.logistics = "*Logistics is required";
+        }
+        if (!shipmentData.shipment.Vehicle) {
+            errors.vehicle = "*Vehicle is required";
+        }
+        if (!shipmentData.shipment.Products) {
+            errors.products = "*Products is required";
+        }
+        if (!shipmentData.shipment.Started) {
+            errors.Started = "*Started is required";
+        }
+        if (!shipmentData.shipment.Ended) {
+            errors.Ended = "*Ended is required";
         }
 
-        if (!formData.userid) {
-            errors.userid = "*User ID is required";
-        }
-        if (!formData.contractName) {
-            errors.contractName = "*Contract Name is required";
-        }
-        if (!formData.Mail) {
-            errors.Mail = "*Mail is required";
-        }
-        if (!formData.Name) {
-            errors.Name = "*Name is required";
-        }
-        if (!formData.Phone) {
-            errors.Phone = "*Phone is required";
-        }
-        if (!formData.ID) {
-            errors.ID = "*ID is required";
-        }
-        if (!formData.Organization) {
-            errors.Organization = "*ID is required";
-        }
 
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
             return;
         }
-       
-   
+        else{
+            handleShow()
+        }
 
-    };
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
-        setFormErrors({ ...formErrors, [name]: "" });
-    };
+    }
 
     return (
         <div className='container-fluid pg'>
             <div className='row'>
                 <div className='col-lg-12 crd'>
                     <div class="login-page">
-                        <div class="form">
+                        <div class="form test-form">
                             <form class="login-form" onSubmit={handleSave}>
-                                <h6 className='fill-up'>Fill Up</h6>
-                                <input type="text" placeholder="User ID" name="userid" value={App_user} onChange={handleChange} disabled />
-                                <input type="text" placeholder="Contract Name" name="contractName" value={formData.contractName} onChange={handleChange} />
-                                {formErrors.contractName && <p className="error">{formErrors.contractName}</p>}
-                                <input type='email' placeholder="Mail" name="Mail" value={formData.Mail} onChange={handleChange} />
-                                {formErrors.Mail && <p className="error">{formErrors.Mail}</p>}
-                                <input type="text" placeholder="Name" name="Name" value={formData.Name} onChange={handleChange} />
-                                {formErrors.Name && <p className="error">{formErrors.Name}</p>}
-                                <input type="tel" placeholder="Mobile" name="Phone" value={formData.Phone} onChange={handleChange} />
-                                {formErrors.Phone && <p className="error">{formErrors.Phone}</p>}
-                                <input type="text" placeholder='ID' name="ID" value={formData.ID} onChange={handleChange} />
-                                {formErrors.ID && <p className="error">{formErrors.ID}</p>}
-                                <input type="text" placeholder='Organization' name="Organization" value={formData.Organization} onChange={handleChange} />
-                                {formErrors.Organization && <p className="error">{formErrors.Organization}</p>}
-                                <input type="text" placeholder="Designation" name="Designation" value={formData.Designation} onChange={handleChange} />
-
-                                <Button onClick={handleSave}>Save</Button>
+                                <h6 className='fill-up'>Fill Up!</h6>
+                                <div className='property'>
+                                    <input type="text" placeholder="UserId" value={App_user} disabled />                               
+                                    <input type="text" placeholder='Name' value={shipmentData.shipment.Name} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Name: e.target.value } })} />  
+                                </div>
+                                <div className='shipment-name'>
+                                {/* {formErrors.userid && <div className='error'>{formErrors.userid}</div>} */}
+                                {formErrors.name && <div className='error'>{formErrors.name}</div>}
+                                </div>
+                                <input type="text" placeholder='Source' value={shipmentData.shipment.Source} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Source: e.target.value } })} />
+                                {formErrors.source && <div  className="error">{formErrors.source}</div>}
+                               
+                                <div className='mail-error'>
+                                </div>
+                                <div className='property'>
+                                <DatePicker
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        selectsStart
+        startDate={startDate}
+        endDate={endDate}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        dateFormat="dd/MM/yyyy HH:mm"
+        placeholderText="Start Date"
+        data-tip={startDate.toLocaleString()}
+      />
+      <DatePicker
+      placeholder="End Date"
+        selected={endDate}
+        onChange={date => setEndDate(date)}
+        selectsEnd
+        startDate={startDate}
+        endDate={endDate}
+        minDate={startDate}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        dateFormat="dd/MM/yyyy HH:mm"
+      />
+                                             </div>
+                                <div className='error-msg'>
+                              
+                                </div>
+                                <input type="text" placeholder='Destination' value={shipmentData.shipment.Destination} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Destination: e.target.value } })} />
+                                {formErrors.destination && <div  className="error">{formErrors.destination}</div>}
+                                <div className='property'>
+                                <input type="text" placeholder='Logistics' value={shipmentData.shipment.Logistics} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Logistics: e.target.value } })} />
+                               
+                                <input type="text" placeholder='Vehicle' value={shipmentData.shipment.Vehicle} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Vehicle: e.target.value } })} />
+                          
+                                </div>
+                                <div className='error-msg'>
+                                {formErrors.logistics && <div className="error">{formErrors.logistics}</div>}
+                                {formErrors.vehicle && <div className="error">{formErrors.vehicle}</div>}
+                                </div>
+                                <input type="text" placeholder='Products' value={shipmentData.shipment.Products} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Products: e.target.value } })} />
+                                {formErrors.products && <div className="error">{formErrors.products}</div>}
+                                <div className='btns'>
+                                    <Button onClick={handleSave} className="save">Save</Button>
+                                </div>
                                 <>
+    
 
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={handleSave}>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </>
-
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSaveChanges}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
                             </form>
                         </div>
                     </div>
