@@ -23,19 +23,81 @@ import Logout from "./Logout";
 
 
 const Farm_user_dashboard = (props) => {
-  const [details, setDetails] = useState({returnables:{ name: "Bangalore Farmhouse", emp_org :"FH1",vaccination_status: { "vaccinated": 20, "non_vaccinated": 80 }, traded_or_newborn: { "traded": 40, "new_born": 60 }, location: { "China": 4, "china": 90, "america": 6 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, cattle_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }, cattle_weights: { "below_100": 25, "range_100_150": 35, "more_150": 40 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "true", "farm_name": "ogo", "date_of_arrival": "21-Feb-2022", "time_of_arrival": "08:50:55", "location": "China", "traded_or_newborn": "Traded", "vaccination_status": "true" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "23-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "New_born", "vaccination_status": "false" }, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "12-Jan-2023", "time_of_arrival": "08:50:55", "location": "China", "traded_or_newborn": "Traded", "vaccination_status": "true" }, { "unique_id": "PRO4", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "22-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "New_born", "vaccination_status": "true" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Dec-2022", "time_of_arrival": "08:50:55", "location": "China", "traded_or_newborn": "New_born", "vaccination_status": "false" }, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "31-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "Traded", "vaccination_status": "true" }, { "unique_id": "PRO4", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "Traded", "vaccination_status": "true" },]} })
-                      //  const details = {returnables:{ name: "Bangalore Farmhouse",location: { "india": 50, "china": 30, "america": 20 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count: { "hr_0_3": 2, "hr_4_7": 6, "hr_8_11": 12, "hr_12_15": 20, "hr_16_19": 8, "hr_20_23": 3 }, cattle_weights: { "below_100": 30, "range_100_150": 20, "more_150": 50 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "false", "farm_name": "ogo", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "variety" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "cultivatio" }, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "ogo" }, { "unique_id": "PRO4", "weight": 120, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "count_perday": "22", "count_perweek": "49", "farm_name": "ogo" }], cattle_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, cattle_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }} }
+  const [details, setDetails] = useState({returnables:{ name: "Bangalore Farmhouse", emp_org :"FH1",vaccination_status: { "vaccinated": 20, "non_vaccinated": 80 }, traded_newborn: { "traded": 40, "newborn": 60 }, location: { "China": 4, "china": 90, "america": 6 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count_perday: { "time_0_3": 9, "time_4_7": 50, "time_8_11": 7, "time_12_15": 80, "time_16_19": 9, "time_20_23": 93 }, cattle_count_perweek: { "sunday": 90, "monday": 50, "tuesday": 56, "wednesday": 80, "thursday": 67, "friday": 93 }, cattle_weights: { "below_100": 25, "range_101_150": 35, "more_150": 40 },
+   overall_reports: [
+      {
+      "CurrentLocation": "FH1",
+      "ID": "PRO24",
+      "Name": "Cow_002204",
+      "ParentProduct": "-",
+      "Properties": {
+          "BreedType": "Breed22",
+          "Color": "White&Br2own",
+          "Height": 6020,
+          "Time_inward": "16773856422000",
+          "Traded_Born": "B2orn",
+          "Vaccinated": true,
+          "Weight": 1835
+      }}, {
+        "CurrentLocation": "FwH1",
+        "ID": "PROe4",
+        "Name": "Cow_00ee04",
+        "ParentProduct": "-",
+        "Properties": {
+            "BreedType": "Brdddeed2",
+            "Color": "Whitddde&Brown",
+            "Height": 900,
+            "Time_inward": "dd",
+            "Traded_Born": "Boddrn",
+            "Vaccinated": true,
+            "Weight": 1852
+        }}, {
+      "CurrentLocation": "FH1",
+      "ID": "PRO4",
+      "Name": "Cow_0004",
+      "ParentProduct": "-",
+      "Properties": {
+          "BreedType": "Breed2",
+          "Color": "White&Brown",
+          "Height": 600,
+          "Time_inward": "1677385642000",
+          "Traded_Born": "Born",
+          "Vaccinated": true,
+          "Weight": 185
+      }}, {
+        "CurrentLocation": "FH1",
+        "ID": "PRO4",
+        "Name": "Cow_0004",
+        "ParentProduct": "-",
+        "Properties": {
+            "BreedType": "Breed2",
+            "Color": "White&Brown",
+            "Height": 600,
+            "Time_inward": "1677385642000",
+            "Traded_Born": "Born",
+            "Vaccinated": true,
+            "Weight": 185
+        }}]} })
+                      //  const details = {returnables:{ name: "Bangalore Farmhouse",location: { "india": 50, "china": 30, "america": 20 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count: { "hr_0_3": 2, "hr_4_7": 6, "hr_8_11": 12, "hr_12_15": 20, "hr_16_19": 8, "hr_20_23": 3 }, cattle_weights: { "below_100": 30, "range_101_150": 20, "more_150": 50 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "false", "farm_name": "ogo", "daday1te_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "variety" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "cultivatio" }, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "ogo" }, { "unique_id": "PRO4", "weight": 120, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "count_perday": "22", "count_perweek": "49", "farm_name": "ogo" }], cattle_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, cattle_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }} }
   const [table, setTable] = useState(false)
   const [show, setShow] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [selectedOption, setSelectedOption] = useState();
   const [title, setTitle] = useState(null);
   const [option, setOption] = useState(null);
-  const titles = Object.keys(details.returnables.overall_report[0]);
+  const title1= Object.keys(details.returnables.overall_reports[0]);
+   const tit= details.returnables.overall_reports[0].Properties;
+   const title2= Object.keys(tit);  
+   const titles = title1.concat(title2);
+  //  const tit1= details.returnables.overall_reports[0].Properties.remove();
+  //  console.log(tit1,"OOO")
+  
+
+console.log(titles,"RRR")
   const [columnchart, setColumnchart] = useState({
     series: [{
-      name: 'Hours', data: [{ x: '0-3hrs', y: details.returnables.cattle_count_perday.hr_0_3 }, { x: '4-7hrs', y: details.returnables.cattle_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.returnables.cattle_count_perday.hr_8_11, },
-      { x: '12-15hrs', y: details.returnables.cattle_count_perday.hr_12_15, }, { x: '16-19hrs', y: details.returnables.cattle_count_perday.hr_16_19, }, { x: '20-23hrs', y: details.returnables.cattle_count_perday.hr_20_23, },]
+      name: 'Hours', data: [{ x: '0-3hrs', y: details.returnables.cattle_count_perday.time_0_3 }, { x: '4-7hrs', y: details.returnables.cattle_count_perday.time_4_7, }, { x: '8-11hrs', y: details.returnables.cattle_count_perday.time_8_11, },
+      { x: '12-15hrs', y: details.returnables.cattle_count_perday.time_12_15, }, { x: '16-19hrs', y: details.returnables.cattle_count_perday.time_16_19, }, { x: '20-23hrs', y: details.returnables.cattle_count_perday.time_20_23, },]
     }],
     options: {
       chart: {
@@ -145,16 +207,17 @@ const Farm_user_dashboard = (props) => {
   // const titles = ['uniquess_id', 'weight', 'inspection', 'farm_name', 'date_of_arrival', 'time_of_arrival', 'location'];
  
   const options = {
-    'unique_id': [],
-    'weight': [],
-    'vaccination_status': [],
-    'inspection': [],
-    'farm_name': [],
-    'date_of_arrival': [],
-    'traded_or_newborn':[],
-    'time_of_arrival': [],
-    'location': []
-  };
+    'CurrentLocation': [],
+    'ID': [],
+    'Name': [],
+    'ParentProduct': [],
+    'BreedType': [],
+    'Color': [],
+    'Height':[],
+    'Time_inward': [],
+    'Traded_Born': [],
+    'Vaccinated':[],
+    'Weight':[]  };
   const App_user="EMP002"
 
 function Manage() {
@@ -162,24 +225,59 @@ function Manage() {
   navigate("/manage", {state: {user: App_user}});
 }
   
-  details.returnables.overall_report.forEach((item) => {
-    if (!options.unique_id.includes(item.unique_id)) {
-      options.unique_id.push(item.unique_id);
+  details.returnables.overall_reports.forEach((item) => {
+    if (!options.CurrentLocation.includes(item.CurrentLocation)) {
+      options.CurrentLocation.push(item.CurrentLocation);
     }
-    if (item.weight < 100) {
-      if (!options.weight.includes('below 100')) {
-        options.weight.push('below 100');
+    if (!options.ID.includes(item.ID)) {
+      options.ID.push(item.ID);
+    }
+    if (!options.Name.includes(item.Name)) {
+      options.Name.push(item.Name);
+    }
+    if (!options.ParentProduct.includes(item.ParentProduct)) {
+      options.ParentProduct.push(item.ParentProduct);
+    }
+    if (item.Properties.Weight < 100) {
+      if (!options.Weight.includes('below 100')) {
+        options.Weight.push('below 100');
       }
-    } else if (item.weight <= 150) {
-      if (!options.weight.includes('100 to 150')) {
-        options.weight.push('100 to 150');
+    } else if (item.Properties.Weight <= 150) {
+      if (!options.Weight.includes('100 to 150')) {
+        options.Weight.push('100 to 150');
       }
     } else {
-      if (!options.weight.includes('above 150')) {
-        options.weight.push('above 150');
+      if (!options.Weight.includes('above 150')) {
+        options.Weight.push('above 150');
       }
     }
-    // if (item.vaccination_status =='true') {
+    if (!options.Vaccinated.includes(item.Properties.Vaccinated)) {
+      options.Vaccinated.push(item.Properties.Vaccinated);
+    }
+ 
+    if (!options.BreedType.includes(item.Properties.BreedType)) {
+      options.BreedType.push(item.Properties.BreedType);
+    }
+    if (!options.Color.includes(item.Properties.Color)) {
+      options.Color.push(item.Properties.Color);
+    }
+    if (!options.Height.includes(item.Properties.Height)) {
+      options.Height.push(item.Properties.Height);
+    }
+    if (!options.Time_inward.includes(item.Properties.Time_inward)) {
+      options.Time_inward.push(item.Properties.Time_inward);
+    }
+    
+    // if (item.inspection =='true') {
+    //   if (!options.inspection.includes('inspection completed')) {
+    //     options.inspection.push('inspection completed');
+    //   }
+    // } else if (item.inspection =='false') {
+    //   if (!options.inspection.includes('inspection not completed')) {
+    //     options.inspection.push('inspection not completed');
+    //   }
+    // }
+      // if (item.vaccination_status =='true') {
     //   if (!options.vaccination_status.includes('Vaccinated')) {
     //     options.vaccination_status.push('Vaccinated');
     //   }
@@ -188,31 +286,7 @@ function Manage() {
     //     options.vaccination_status.push('Non Vaccinated');
     //   }
     // }
-    if (!options.vaccination_status.includes(item.vaccination_status)) {
-      options.vaccination_status.push(item.vaccination_status);
-    }
 
-    if (item.inspection =='true') {
-      if (!options.inspection.includes('inspection completed')) {
-        options.inspection.push('inspection completed');
-      }
-    } else if (item.inspection =='false') {
-      if (!options.inspection.includes('inspection not completed')) {
-        options.inspection.push('inspection not completed');
-      }
-    }
-    if (!options.farm_name.includes(item.farm_name)) {
-      options.farm_name.push(item.farm_name);
-    }
-    if (!options.date_of_arrival.includes(item.date_of_arrival)) {
-      options.date_of_arrival.push(item.date_of_arrival);
-    }
-    if (!options.time_of_arrival.includes(item.time_of_arrival)) {
-      options.time_of_arrival.push(item.time_of_arrival);
-    }
-    if (!options.location.includes(item.location)) {
-      options.location.push(item.location);
-    }
    
   });
   
@@ -241,41 +315,45 @@ function Manage() {
 
   const filterData = () => {
     if (!title || !option) {
-      return details.returnables.overall_report;
+      return details.returnables.overall_reports;
     }
-
-    const reports = details.returnables.overall_report.filter(report => {
-      if (title === 'unique_id' || title === 'farm_name' || title === 'location' || title === 'date_of_arrival' || title === 'time_of_arrival') {
+    console.log("filterdata")
+    const reports = details.returnables.overall_reports.filter(report => {
+      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === 'Height' || title === 'Time_inward' || title === 'Vaccinated' || title === 'weight' ) {
         return report[title] === option;
       }
-      //  else if (title === 'vaccination_status') {
+      //  else if (title === 'Vaccinated') {
       //   if (option === 'Vaccinated') {
-      //     return report[title] == 'true';
+      //     return report[title] == true;
       //   } if (option === 'Non Vaccinated') {
-      //     return report[title] =='false';
+      //     return report[title] ==false;
       //   } 
       // }
 
-      else if (title === 'inspection') {
-        if (option === 'inspection completed') {
-          return report[title] == 'true';
-        } if (option === 'inspection not completed') {
-          return report[title] =='false';
-        } 
-      }
-       else if (title === 'weight') {
-        if (option === 'below 100') {
-          return report[title] < 100;
-        } else if (option === '100 to 150') {
-          return report[title] >= 100 && report[title] <= 150;
-        } else {
-          return report[title] > 150;
-        }
-      }
+      // else if (title === 'inspection') {
+      //   if (option === 'inspection completed') {
+      //     return report[title] == 'true';
+      //   } if (option === 'inspection not completed') {
+      //     return report[title] =='false';
+      //   } 
+      // }
+      //  else if (title === 'weight') {
+      //   if (option === 'below 100') {
+      //     return report[title] < 100;
+      //   } else if (option === '100 to 150') {
+      //     return report[title] >= 100 && report[title] <= 150;
+      //   } else {
+      //     return report[title] > 150;
+      //   }
+      // }
     });
-
+    console.log(reports,"filterdata")
+   
     return reports;
+   
   };
+
+
   const handleClick = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -294,11 +372,11 @@ function Manage() {
           series: [
             {
               name: 'Hours',
-              data: [{ x: '0-3hrs', y: details.returnables.cattle_count_perday.hr_0_3, }, { x: '4-7hrs', y: details.returnables.returnables.cattle_count_perday.hr_4_7, }, { x: '8-11hrs', y: details.returnables.cattle_count_perday.hr_8_11, }, { x: '12-15hrs', y: details.returnables.cattle_count_perday.hr_12_15, },
+              data: [{ x: '0-3hrs', y: details.returnables.cattle_count_perday.time_0_3, }, { x: '4-7hrs', y: details.returnables.returnables.cattle_count_perday.time_4_7, }, { x: '8-11hrs', y: details.returnables.cattle_count_perday.time_8_11, }, { x: '12-15hrs', y: details.returnables.cattle_count_perday.time_12_15, },
               {
                 x: '16-19hrs',
-                y: details.returnables.cattle_count_perday.hr_16_19,
-              }, { x: '20-23hrs', y: details.returnables.cattle_count_perday.hr_20_23, },]
+                y: details.returnables.cattle_count_perday.time_16_19,
+              }, { x: '20-23hrs', y: details.returnables.cattle_count_perday.time_20_23, },]
             }],
           options: {
             chart: {
@@ -331,7 +409,7 @@ function Manage() {
           series: [
             {
               name: 'Month',
-              data: [{ x: 'Mon', y: details.returnables.cattle_count_perweek.day1, }, { x: 'Tues', y: details.returnables.cattle_count_perweek.day2, }, { x: 'Wed', y: details.returnables.cattle_count_perweek.day3, }, { x: 'Thurs', y: details.returnables.cattle_count_perweek.day4, }, { x: 'Fri', y: details.returnables.cattle_count_perweek.day5, }, { x: 'Sat', y: details.returnables.cattle_count_perweek.day6, },]
+              data: [{ x: 'Mon', y: details.returnables.cattle_count_perweek.sunday, }, { x: 'Tues', y: details.returnables.cattle_count_perweek.monday, }, { x: 'Wed', y: details.returnables.cattle_count_perweek.tuesday, }, { x: 'Thurs', y: details.returnables.cattle_count_perweek.wednesday, }, { x: 'Fri', y: details.returnables.cattle_count_perweek.thursday, }, { x: 'Sat', y: details.returnables.cattle_count_perweek.friday, },]
             }],
           options: {
             chart: {
@@ -435,8 +513,8 @@ function Manage() {
       </div>
     );
   };
-  const Cattleweightchart = (below_100, range_100_150, above_150, data, title, width) => {
-    const series=[below_100, range_100_150, above_150]
+  const Cattleweightchart = (below_100, range_101_150, above_150, data, title, width) => {
+    const series=[below_100, range_101_150, above_150]
     const options={
       chart: {
         width: width,
@@ -564,7 +642,7 @@ function Manage() {
               </div>
               <div className="col-lg-6 ">
                 <div className="card card-1">
-                  {Piechart(details.returnables.traded_or_newborn.traded, details.returnables.traded_or_newborn.new_born, ['Traded', 'New Born',], "TRADED OR NEWBORN", 393)}
+                  {Piechart(details.returnables.traded_newborn.traded, details.returnables.traded_newborn.newborn, ['Traded', 'New Born',], "TRADED OR NEWBORN", 393)}
                 </div>
               </div>
               <div className="col-lg-6">
@@ -574,7 +652,7 @@ function Manage() {
               </div>
               <div className="col-lg-6">
                 <div className="card card-1">
-                  {Cattleweightchart(details.returnables.cattle_weights.below_100, details.returnables.cattle_weights.range_100_150, details.returnables.cattle_weights.more_150, ['Below 100', 'Range 100-150', 'Above 150'], "CATTLE WEIGHT", 430)}
+                  {Cattleweightchart(details.returnables.cattle_weights.below_100, details.returnables.cattle_weights.range_101_150, details.returnables.cattle_weights.more_150, ['Below 100', 'Range 100-150', 'Above 150'], "CATTLE WEIGHT", 430)}
                 </div>
               </div>
               <div>
@@ -617,27 +695,34 @@ function Manage() {
                                 <table>
                                   <thead>
                                     <tr>
-                                      <th>Unique ID</th>
+                                      <th>ID</th>
+                                      <th>CurrentLocation</th>
+                                      <th>Name</th>
+                                      <th>BreedType</th>
+                                      <th>Color</th>
+                                      <th>Height</th>
+                                      <th>Time Inward</th>
+                                      <th>Traded_Born</th>
+                                      <th>Vaccinated</th>
                                       <th>Weight</th>
-                                      <th>Traded or Newborn</th>
-                                      <th>Inspection</th>
-                                      <th>Vaccination</th>
-                                      <th>Date of Arrival</th>
-                                      <th>Time of Arrival</th>
-                                      <th>Location</th>
                                  </tr>
                                   </thead>
                                   <tbody>
                                     {filterData().slice(0,3).map((item, index) => (
-                                      <tr key={item.unique_id} className={`row-${index % 2}`}>
-                                        <td>{item.unique_id}</td>
-                                        <td>{item.weight}</td>
-                                        <td className="traded-newborn">{item.traded_or_newborn}</td>
-                                        <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
-                                        <td>{item.vaccination_status == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
-                                        <td>{item.date_of_arrival}</td>
-                                        <td>{item.time_of_arrival}</td>
-                                        <td>{item.location}</td>
+                                      <tr key={item.ID} className={`row-${index % 2}`}>
+                                        <td>{item.ID}</td>
+                                        <td>{item.CurrentLocation}</td>
+                                        <td>{item.Name}</td>
+                                        <td>{item.Properties.BreedType}</td>
+                                        <td>{item.Properties.Color}</td>
+                                        <td>{item.Properties.Height}</td>
+                                        <td>{item.Properties.Time_inward}</td>
+                                        <td>{item.Properties.Traded_Born}</td>
+                                        <td>{item.Properties.Vaccinated == true && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
+                                        <td>{item.Properties.Weight}</td>
+                                        {/* <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td> */}
+                                      
+                                      
                                       </tr>
                                     ))}
                                   </tbody>
