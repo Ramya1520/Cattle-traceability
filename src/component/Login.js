@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import Cattle from '../assets/cattle.png'
 import { useNavigate } from "react-router-dom";
+import Trace from '../assets/trace.png'
 import signout from "../assets/signout.png"
 
 function Login() {
@@ -40,8 +41,11 @@ function Login() {
         <div className="container-fluid">
             <div className="row full-row">
                 <div className="col-lg-6 right-side">
-                    <h5>Welcome!</h5>
+                  
+               
                     <div className="right-side-content">
+                    <img src={Trace} className="trace"></img> 
+                    
                     </div>
                 </div>           
                 <div className="col-lg-6 left-side" >
@@ -57,7 +61,7 @@ function Login() {
                                         <input type="text" placeholder="username" name="username" value={login.username} onChange={handleInputChange} />
                                         <input type="password" placeholder="password" name="password" value={login.password} onChange={handleInputChange} />
                                         <button className="btn btn-primary" type="submit">login</button>
-                                        <p className="message"> <a href="#">forgot password</a></p>
+                            
                                     </form>
                                 </div>
                             </div>

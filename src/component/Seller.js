@@ -462,7 +462,7 @@ const Seller_dashboard = (props) => {
               </div>
               <div className="col-lg-6 ">
                 <div className="card card-1">
-                  {Piechart(details.returnables.farm_name.cultivatio, details.returnables.farm_name.ogo, details.returnables.farm_name.variety, ['cultivatio', 'Ogo', 'Variety'], "FARM NAME", 393)}
+                  {Piechart(details.returnables.farm_name.cultivatio, details.returnables.farm_name.ogo, details.returnables.farm_name.variety, ['cultivatio', 'Ogo', 'Variety'], "SLAUGHTERHOUSE", 393)}
                 </div>
               </div>
               <div className="col-lg-6 ">

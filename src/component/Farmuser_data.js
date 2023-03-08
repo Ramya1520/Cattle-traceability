@@ -246,7 +246,7 @@ const Farm_user_manage = (props) => {
                                     <tr>
                                       <th>Unique IDs</th>
                                       <th>Weight</th>
-                                      <th>Traded or Newborn</th>
+                                      {/* <th>Traded or Newborn</th> */}
                                       <th>Inspection</th>
                                       <th>Vaccination</th>
                                       <th>Date of Arrival</th>
@@ -259,7 +259,7 @@ const Farm_user_manage = (props) => {
                                       <tr key={item.unique_id} className={`row-${index % 2}`}>
                                         <td>{item.unique_id}</td>
                                         <td>{item.weight}</td>
-                                        <td className="traded-newborn">{item.traded_or_newborn}</td>
+                                        {/* <td className="traded-newborn">{item.traded_or_newborn}</td> */}
                                         <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
                                         <td>{item.vaccination_status == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
                                         <td>{item.date_of_arrival}</td>

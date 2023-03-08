@@ -134,7 +134,9 @@
     display: flex;
     flex-direction: column;
     /* column-gap: 114px; */
-    row-gap: 64px;
+    row-gap: 29px;
+    
+    margin-top: 50px;
 
 }
 .ctl-img {
@@ -147,4 +149,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 24px;
+}
+.trace{
+  width: 93%;
 }

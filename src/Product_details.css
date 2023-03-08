@@ -41,27 +41,27 @@
 }
 
 .row-date {
-  background-color: #E1F5FE;
+  background-color: whitesmoke;
 }
 
 .row-time {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .row-location {
-  background-color: #E1F5FE;
+  background-color: whitesmoke;
 }
 
 .row-company {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .row-Inspection {
-  background-color: #E1F5FE;
+  background-color: whitesmoke;
 }
 
 .row-vaccination {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .tbl {

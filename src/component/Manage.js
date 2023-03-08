@@ -14,14 +14,46 @@ function Manage() {
     {
     Destination: "SH1",
    Ended: "1677598217",
-    ID: "SHIP1",
-    Logistics: "LOG1",
+    ID: "SHIP2",
+    Logistics: "LOG2",
     Name: "Cow to slaughterhouse",
     Products: "PRO1,PRO2",
    Source: "FH1",
     Started: "1677488117",
     Vehicle: "VH1"
-    }
+    },
+    {
+      Destination: "SH1",
+     Ended: "1677598217",
+      ID: "SHIP1",
+      Logistics: "LOG2",
+      Name: "Cow to slaughterhouse",
+      Products: "PRO4,PRO5",
+     Source: "FH2",
+      Started: "1677488117",
+      Vehicle: "VH5"
+      },  {
+        Destination: "SH7",
+       Ended: "1677598217",
+        ID: "SHIP6",
+        Logistics: "LOG6",
+        Name: "Cow to slaughterhouse",
+        Products: "PRO6,PRO7",
+       Source: "FH1",
+        Started: "1677488117",
+        Vehicle: "VH1"
+        },  {
+          Destination: "SH8",
+         Ended: "1677598217",
+          ID: "SHIP8",
+          Logistics: "LOG1",
+          Name: "Cow to slaughterhouse",
+          Products: "PRO1,PRO2",
+         Source: "FH1",
+          Started: "1677488117",
+          Vehicle: "VH1"
+          }
+
     ]
     });
   const [show, setShow] = useState(false);
