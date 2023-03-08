@@ -25,7 +25,7 @@ root.render(
     <div className='index'>
       <Routes>
         <Route path='/farmuser' element={<Farm_user_dashboard />}></Route>
-        <Route path='/product' element={ <Product_details/>}></Route>
+        <Route path='/product/:id' element={ <Product_details/>}></Route>
         <Route path='/slaughterhouse' element={<Slaughterhouse_dashboard/>}></Route>
         <Route path='/seller' element={<Seller_dashboard/>}></Route>
         <Route path='/logistics' element={<Logistics_dashboard/>}></Route>
