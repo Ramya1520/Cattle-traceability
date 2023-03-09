@@ -30,7 +30,7 @@ const Farm_user_dashboard = (props) => {
       "ID": "PRO24",
       "Name": "Cow_002204",
       "ParentProduct": "-",
-      "Properties": {
+    
           "BreedType": "Breed22",
           "Color": "White&Br2own",
           "Height": 6020,
@@ -38,12 +38,12 @@ const Farm_user_dashboard = (props) => {
           "Traded_Born": "B2orn",
           "Vaccinated": true,
           "Weight": 1835
-      }}, {
+      }, {
         "CurrentLocation": "FwH1",
         "ID": "PROe4",
         "Name": "Cow_00ee04",
         "ParentProduct": "-",
-        "Properties": {
+  
             "BreedType": "Brdddeed2",
             "Color": "Whitddde&Brown",
             "Height": 900,
@@ -51,12 +51,12 @@ const Farm_user_dashboard = (props) => {
             "Traded_Born": "Boddrn",
             "Vaccinated": true,
             "Weight": 1852
-        }}, {
+        }, {
       "CurrentLocation": "FH1",
       "ID": "PRO4",
       "Name": "Cow_0004",
       "ParentProduct": "-",
-      "Properties": {
+   
           "BreedType": "Breed2",
           "Color": "White&Brown",
           "Height": 600,
@@ -64,12 +64,12 @@ const Farm_user_dashboard = (props) => {
           "Traded_Born": "Born",
           "Vaccinated": true,
           "Weight": 185
-      }}, {
+      }, {
         "CurrentLocation": "FH1",
         "ID": "PRO4",
         "Name": "Cow_0004",
         "ParentProduct": "-",
-        "Properties": {
+      
             "BreedType": "Breed2",
             "Color": "White&Brown",
             "Height": 600,
@@ -77,7 +77,7 @@ const Farm_user_dashboard = (props) => {
             "Traded_Born": "Born",
             "Vaccinated": true,
             "Weight": 185
-        }}]} })
+        }]} })
                       //  const details = {returnables:{ name: "Bangalore Farmhouse",location: { "india": 50, "china": 30, "america": 20 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count: { "hr_0_3": 2, "hr_4_7": 6, "hr_8_11": 12, "hr_12_15": 20, "hr_16_19": 8, "hr_20_23": 3 }, cattle_weights: { "below_100": 30, "range_101_150": 20, "more_150": 50 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "false", "farm_name": "ogo", "daday1te_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "variety" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "cultivatio" }, { "unique_id": "PRO3", "weight": 170, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "farm_name": "ogo" }, { "unique_id": "PRO4", "weight": 120, "inspection": "true", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "count_perday": "22", "count_perweek": "49", "farm_name": "ogo" }], cattle_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, cattle_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }} }
   const [table, setTable] = useState(false)
   const [show, setShow] = useState(false);
@@ -85,15 +85,17 @@ const Farm_user_dashboard = (props) => {
   const [selectedOption, setSelectedOption] = useState();
   const [title, setTitle] = useState(null);
   const [option, setOption] = useState(null);
-  const title1= Object.keys(details.returnables.overall_reports[0]);
-   const tit= details.returnables.overall_reports[0].Properties;
-   const title2= Object.keys(tit);  
-   const titles = title1.concat(title2);
+  const titles= Object.keys(details.returnables.overall_reports[0]);
+  //  const tit= details.returnables.overall_reports[0];
+  //  const title2= Object.keys(tit);  
+  //  const titles = title1.concat(title2);
   //  const tit1= details.returnables.overall_reports[0].Properties.remove();
   //  console.log(tit1,"OOO")
+
   
 
-console.log(titles,"RRR")
+console.log(details,"RRR")
+
   const [columnchart, setColumnchart] = useState({
     series: [{
       name: 'Hours', data: [{ x: '0-3hrs', y: details.returnables.cattle_count_perday.time_0_3 }, { x: '4-7hrs', y: details.returnables.cattle_count_perday.time_4_7, }, { x: '8-11hrs', y: details.returnables.cattle_count_perday.time_8_11, },
@@ -238,11 +240,11 @@ function Manage() {
     if (!options.ParentProduct.includes(item.ParentProduct)) {
       options.ParentProduct.push(item.ParentProduct);
     }
-    if (item.Properties.Weight < 100) {
+    if (item.Weight < 100) {
       if (!options.Weight.includes('below 100')) {
         options.Weight.push('below 100');
       }
-    } else if (item.Properties.Weight <= 150) {
+    } else if (item.Weight <= 150) {
       if (!options.Weight.includes('100 to 150')) {
         options.Weight.push('100 to 150');
       }
@@ -251,21 +253,21 @@ function Manage() {
         options.Weight.push('above 150');
       }
     }
-    if (!options.Vaccinated.includes(item.Properties.Vaccinated)) {
-      options.Vaccinated.push(item.Properties.Vaccinated);
+    if (!options.Vaccinated.includes(item.Vaccinated)) {
+      options.Vaccinated.push(item.Vaccinated);
     }
  
-    if (!options.BreedType.includes(item.Properties.BreedType)) {
-      options.BreedType.push(item.Properties.BreedType);
+    if (!options.BreedType.includes(item.BreedType)) {
+      options.BreedType.push(item.BreedType);
     }
-    if (!options.Color.includes(item.Properties.Color)) {
-      options.Color.push(item.Properties.Color);
+    if (!options.Color.includes(item.Color)) {
+      options.Color.push(item.Color);
     }
-    if (!options.Height.includes(item.Properties.Height)) {
-      options.Height.push(item.Properties.Height);
+    if (!options.Height.includes(item.Height)) {
+      options.Height.push(item.Height);
     }
-    if (!options.Time_inward.includes(item.Properties.Time_inward)) {
-      options.Time_inward.push(item.Properties.Time_inward);
+    if (!options.Time_inward.includes(item.Time_inward)) {
+      options.Time_inward.push(item.Time_inward);
     }
     
     // if (item.inspection =='true') {
@@ -319,7 +321,7 @@ function Manage() {
     }
     console.log("filterdata")
     const reports = details.returnables.overall_reports.filter(report => {
-      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === 'Height' || title === 'Time_inward' || title === 'Vaccinated' || title === 'weight' ) {
+      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === "Height" || title === 'Time_inward' || title === 'Vaccinated' || title === 'Weight' ) {
         return report[title] === option;
       }
       //  else if (title === 'Vaccinated') {
@@ -713,13 +715,13 @@ function Manage() {
                                         <td>{item.ID}</td>
                                         <td>{item.CurrentLocation}</td>
                                         <td>{item.Name}</td>
-                                        <td>{item.Properties.BreedType}</td>
-                                        <td>{item.Properties.Color}</td>
-                                        <td>{item.Properties.Height}</td>
-                                        <td>{item.Properties.Time_inward}</td>
-                                        <td>{item.Properties.Traded_Born}</td>
-                                        <td>{item.Properties.Vaccinated == true && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
-                                        <td>{item.Properties.Weight}</td>
+                                        <td>{item.BreedType}</td>
+                                        <td>{item.Color}</td>
+                                        <td>{item.Height}</td>
+                                        <td>{item.Time_inward}</td>
+                                        <td>{item.Traded_Born}</td>
+                                        <td>{item.Vaccinated == true && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
+                                        <td>{item.Weight}</td>
                                         {/* <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td> */}
                                       
                                       

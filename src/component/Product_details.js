@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Button, Card } from 'react-bootstrap';
-import arrow from '../assets/Down_arrow.png';
+import arrow from '../assets/Down_arrow.svg';
 import '../Product_details.css';
 import ship from '../assets/ship.svg';
 import truck from '../assets/truck.svg';
@@ -12,16 +12,21 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import Cattle from '../assets/cattle.png';
 import Logout from "./Logout";
 import { useEffect } from "react";
+import { InfinitySpin } from 'react-loader-spinner'
+
+import Loader1 from './Loader';
 
 const Product_details = () => {
     const [records, setRecords] = useState([]);
-    const [show_detail, setShow_detail] = useState(null);
+  
     const [flag, setFlag] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [show, setShow] = useState(false);
+    const [show_detail, setShow_detail] = useState(null);
     const show_details = (show) => {
         setShow_detail(show);
     }
+   
     let Product_id = useParams().id;
     
     useEffect(() => {
@@ -51,7 +56,10 @@ const Product_details = () => {
 
                 data = await data.json();
                     if (data.status) {
+                        
+                        var final =data.returnables?.length -1
                         setRecords(data.returnables);
+                        setShow_detail(data.returnables[final])
                         setFlag(true);
                     }
           }
@@ -60,9 +68,13 @@ const Product_details = () => {
  
     }, []);
 
+    const reversedRecords = [...records].reverse();
+    console.log(reversedRecords)
+
+
     const navbarClass = scrollPosition > 0 ? "navbar1 shadow" : "navbar1";
     return (
-        <div>
+        <div >
             <div className='page'>
             <Navbar className={navbarClass} expand="lg" fixed="top">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -92,24 +104,33 @@ const Product_details = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        {reversedRecords ? (
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-6 left ">
                             <div>
                                 {
-                                    records.map((element) => (
+                                    reversedRecords.map((element) => (
                                         (element.Type == "Product" && flag &&  
                                             <Row>
                                                 <Col>
-                                                    <Button className='buttons' variant="light" onClick={() => show_details(element)}>{element.Title}</Button>
+                                                    <Button className='buttons' variant="light" onClick={() => show_details(element)}>{element.Company_Name}</Button>
                                                 </Col>
                                             </Row>) ||
                                         (element.Type == "Shipment" && flag &&
                                             <Row>
+                                                
                                                 <Col className='col_center'>
-                                                    <div className='ship-arrow'>
+
+                                                    <div className='ship-truck'>  
+                                                    { (element.Vehicle[0]== "S" &&      
                                                     <img src={ship} onClick={() => show_details(element)} alt="Ship" className='ship'></img>
-                                                    <img src={arrow} alt="down_arrow" className='ship-arrow'></img>
+                                                    )}
+                                                   { (element.Vehicle[0]== "T" &&      
+                                                    <img src={truck} onClick={() => show_details(element)} alt="Ship" className='truck'></img>
+                                                    )}
+                                                   
+                                                    {/* <img src={arrow} alt="down_arrow" className='ship-arrow'></img> */}
                                                     </div>
                                                 </Col>
                                             </Row>)
@@ -123,11 +144,11 @@ const Product_details = () => {
                                     <table className='tbl'>
                                         <tbody>
                                             <tr>
-                                                <th colSpan="3">{show_detail.Title}</th>
+                                                <th colSpan="3">{show_detail.Company_Name}</th>
                                             </tr>
                                                 {
-                                                    Object.keys(show_detail).map((object) => (
-                                                        <tr className="row-date">
+                                                    Object.keys(show_detail).map((object,index) => (
+                                                        <tr className={index % 2 === 0 ? "row-blue" : "row-white"}>
                                                             <td>{object}</td>
                                                             <td>{show_detail[object]}</td>
                                                         </tr> 
@@ -136,12 +157,19 @@ const Product_details = () => {
                                         </tbody>
                                     </table>
                                 </div>
-                            ) : (
-                                <h5 className="view_detail">Click the button to view details.</h5>
-                            )}
+                            ) :(    <InfinitySpin 
+                                width='200'
+                                color="blue"
+                              />)
+                                
+                        }
                         </div>
                     </div>
                 </div>
+        ):(    <InfinitySpin 
+            width='200'
+            color="blue"
+          />)}
             </div>
         </div>
     );

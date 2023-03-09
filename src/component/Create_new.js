@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect } from 'react';
+import Loader1 from './Loader';
+import { InfinitySpin } from 'react-loader-spinner'
 
 
 function New_form() {
@@ -142,7 +144,12 @@ if(shipmentData.shipment.Name &&shipmentData.shipment.Destination&&shipmentData.
 
     return (
         <div className='container-fluid pg'>
-            <div className='row'>
+            {/* <Loader1/> */}
+            <InfinitySpin 
+  width='200'
+  color="blue"
+/>
+            {/* <div className='row'>
                 <div className='col-lg-12 crd'>
                     <div class="login-page">
                         <div class="form test-form">
@@ -153,7 +160,7 @@ if(shipmentData.shipment.Name &&shipmentData.shipment.Destination&&shipmentData.
                                     <input type="text" placeholder='Name' value={shipmentData.shipment.Name} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Name: e.target.value } })} />  
                                 </div>
                                 <div className='shipment-name'>
-                                {/* {formErrors.userid && <div className='error'>{formErrors.userid}</div>} */}
+                              
                                 {formErrors.name && <div className='error'>{formErrors.name}</div>}
                                 </div>
                                 <input type="text" placeholder='Source' value={shipmentData.shipment.Source} onChange={(e) => setShipmentData({ ...shipmentData, shipment: { ...shipmentData.shipment, Source: e.target.value } })} />
@@ -231,7 +238,7 @@ if(shipmentData.shipment.Name &&shipmentData.shipment.Destination&&shipmentData.
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
