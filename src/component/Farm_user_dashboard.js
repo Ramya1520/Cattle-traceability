@@ -23,7 +23,7 @@ import Logout from "./Logout";
 
 
 const Farm_user_dashboard = (props) => {
-  const [details, setDetails] = useState({returnables:{ name: "Bangalore Farmhouse", emp_org :"FH1",vaccination_status: { "vaccinated": 20, "non_vaccinated": 80 }, traded_newborn: { "traded": 40, "newborn": 60 }, location: { "China": 4, "china": 90, "america": 6 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count_perday: { "time_0_3": 9, "time_4_7": 50, "time_8_11": 7, "time_12_15": 80, "time_16_19": 9, "time_20_23": 93 }, cattle_count_perweek: { "sunday": 90, "monday": 50, "tuesday": 56, "wednesday": 80, "thursday": 67, "friday": 93 }, cattle_weights: { "below_100": 25, "range_101_150": 35, "more_150": 40 },
+  const [details, setDetails] = useState({returnables:{ name: "Bangalore-Farmhouse", emp_org :"FH1",vaccination_status: { "vaccinated": 20, "non_vaccinated": 80 }, traded_newborn: { "traded": 40, "newborn": 60 }, location: { "China": 4, "china": 90, "america": 6 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count_perday: { "time_0_3": 9, "time_4_7": 50, "time_8_11": 7, "time_12_15": 80, "time_16_19": 9, "time_20_23": 93 }, cattle_count_perweek: { "sunday": 90, "monday": 50, "tuesday": 56, "wednesday": 80, "thursday": 67, "friday": 93 }, cattle_weights: { "below_100": 25, "range_101_150": 35, "more_150": 40 },
    overall_reports: [
       {
       "CurrentLocation": "FH1",
