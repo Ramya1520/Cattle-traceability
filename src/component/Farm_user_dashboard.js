@@ -42,7 +42,6 @@ const Farm_user_dashboard = (props) => {
         "ID": "PROe4",
         "Name": "Cow_00ee04",
         "ParentProduct": "-",
-  
             "BreedType": "Breed232",
             "Color": "Whitddde&Brown",
             "Height": "900",
@@ -124,7 +123,7 @@ useEffect(() => {
       }
     })
    
-},[])
+},[details])
 
   useEffect(() => {
 
@@ -143,6 +142,7 @@ useEffect(() => {
       .then(res => res.json())
       .then(data => {
         console.log(data,"dddaatttaaa")
+        setDetails(data)
       
       })
       .catch(err => console.log(err));
