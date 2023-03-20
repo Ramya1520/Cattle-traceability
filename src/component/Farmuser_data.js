@@ -33,22 +33,23 @@ const Farm_user_manage = (props) => {
   const [selectedOption, setSelectedOption] = useState();
   const [title, setTitle] = useState(null);
   const [option, setOption] = useState(null);
-  const titles = Object.keys(details.returnables.overall_report[0]);
+  const titles = Object.keys(details?.returnables?.overall_reports[0]);
 
   const navigate = useNavigate();
   // const titles = ['uniquess_id', 'weight', 'inspection', 'farm_name', 'date_of_arrival', 'time_of_arrival', 'location'];
  
   const options = {
-    'unique_id': [],
-    'weight': [],
-    'vaccination_status': [],
-    'inspection': [],
-    'farm_name': [],
-    'date_of_arrival': [],
-    'traded_or_newborn':[],
-    'time_of_arrival': [],
-    'location': []
-  };
+    'CurrentLocation': [],
+    'ID': [],
+    'Name': [],
+    'ParentProduct': [],
+    'BreedType': [],
+    'Color': [],
+    'Height':[],
+    'Time_inward': [],
+    'Traded_Born': [],
+    'Vaccinated':[],
+    'Weight':[]  };
   const App_user="EMP002"
  
   const handleClick = () => {
@@ -58,62 +59,74 @@ const Farm_user_manage = (props) => {
     });
   }
   
-
-  
-  details.returnables.overall_report.forEach((item) => {
-    if (!options.unique_id.includes(item.unique_id)) {
-      options.unique_id.push(item.unique_id);
+  details.returnables.overall_reports.forEach((item) => {
+    if (!options.CurrentLocation.includes(item.CurrentLocation)) {
+      options.CurrentLocation.push(item.CurrentLocation);
     }
-    if (item.weight < 100) {
-      if (!options.weight.includes('below 100')) {
-        options.weight.push('below 100');
+    if (!options.ID.includes(item.ID)) {
+      options.ID.push(item.ID);
+    }
+    if (!options.Name.includes(item.Name)) {
+      options.Name.push(item.Name);
+    }
+    if (!options.ParentProduct.includes(item.ParentProduct)) {
+      options.ParentProduct.push(item.ParentProduct);
+    }
+    if (item.Weight < 100) {
+      if (!options.Weight.includes('below 100')) {
+        options.Weight.push('below 100');
       }
-    } else if (item.weight <= 150) {
-      if (!options.weight.includes('100 to 150')) {
-        options.weight.push('100 to 150');
+    } else if (item.Weight <= 150) {
+      if (!options.Weight.includes('100 to 150')) {
+        options.Weight.push('100 to 150');
       }
     } else {
-      if (!options.weight.includes('above 150')) {
-        options.weight.push('above 150');
+      if (!options.Weight.includes('above 150')) {
+        options.Weight.push('above 150');
       }
     }
-    if (item.vaccination_status =='true') {
-      if (!options.vaccination_status.includes('Vaccinated')) {
-        options.vaccination_status.push('Vaccinated');
-      }
-    } else if (item.vaccination_status =='false') {
-      if (!options.vaccination_status.includes('Non Vaccinated')) {
-        options.vaccination_status.push('Non Vaccinated');
-      }
+    if (!options.Vaccinated.includes(item.Vaccinated)) {
+      options.Vaccinated.push(item.Vaccinated);
+    }
+ 
+    if (!options.BreedType.includes(item.BreedType)) {
+      options.BreedType.push(item.BreedType);
+    }
+    if (!options.Time_inward.includes(item.Time_inward)) {
+      options.Time_inward.push(item.Time_inward);
+    }
+    if (!options.Color.includes(item.Color)) {
+      options.Color.push(item.Color);
+    }
+    if (!options.Height.includes(item.Height)) {
+      options.Height.push(item.Height);
+    }
+    if (!options.Traded_Born.includes(item.Traded_Born)) {
+      options.Traded_Born.push(item.Traded_Born);
     }
     
+    // if (item.inspection =='true') {
+    //   if (!options.inspection.includes('inspection completed')) {
+    //     options.inspection.push('inspection completed');
+    //   }
+    // } else if (item.inspection =='false') {
+    //   if (!options.inspection.includes('inspection not completed')) {
+    //     options.inspection.push('inspection not completed');
+    //   }
+    // }
+      // if (item.vaccination_status =='true') {
+    //   if (!options.vaccination_status.includes('Vaccinated')) {
+    //     options.vaccination_status.push('Vaccinated');
+    //   }
+    // } else if (item.vaccination_status =='false') {
+    //   if (!options.vaccination_status.includes('Non Vaccinated')) {
+    //     options.vaccination_status.push('Non Vaccinated');
+    //   }
+    // }
 
-    if (item.inspection =='true') {
-      if (!options.inspection.includes('inspection completed')) {
-        options.inspection.push('inspection completed');
-      }
-    } else if (item.inspection =='false') {
-      if (!options.inspection.includes('inspection not completed')) {
-        options.inspection.push('inspection not completed');
-      }
-    }
-    if (!options.farm_name.includes(item.farm_name)) {
-      options.farm_name.push(item.farm_name);
-    }
-    if (!options.traded_or_newborn.includes(item.traded_or_newborn)) {
-      options.traded_or_newborn.push(item.traded_or_newborn);
-    }
-    if (!options.date_of_arrival.includes(item.date_of_arrival)) {
-      options.date_of_arrival.push(item.date_of_arrival);
-    }
-    if (!options.time_of_arrival.includes(item.time_of_arrival)) {
-      options.time_of_arrival.push(item.time_of_arrival);
-    }
-    if (!options.location.includes(item.location)) {
-      options.location.push(item.location);
-    }
    
   });
+  
   
   useEffect(() => {
     const handleScroll = () => {
@@ -137,32 +150,31 @@ const Farm_user_manage = (props) => {
   const handleOptionChange = (event) => {
     setOption(event.target.value);
   };
-
   const filterData = () => {
     if (!title || !option) {
-      return details.returnables.overall_report;
+      return details.returnables.overall_reports;
     }
-
-    const reports = details.returnables.overall_report.filter(report => {
-      if (title === 'unique_id' || title === 'farm_name' || title === 'location' || title === 'date_of_arrival' || title === 'time_of_arrival' ||title==="traded_or_newborn") {
+    console.log("filterdata")
+    const reports = details.returnables.overall_reports.filter(report => {
+      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === "Height" || title === 'Time_inward' || title === 'Weight'||title==="Traded_Born" ) {
         return report[title] === option;
       }
-       else if (title === 'vaccination_status') {
-        if (option === 'Vaccinated') {
-          return report[title] == 'true';
-        } if (option === 'Non Vaccinated') {
-          return report[title] =='false';
-        } 
-      }
+      //  else if (title === 'Vaccinated') {
+      //   if (option === 'Vaccinated') {
+      //     return report[title] == true;
+      //   } if (option === 'Non Vaccinated') {
+      //     return report[title] ==false;
+      //   } 
+      // }
 
-      else if (title === 'inspection') {
-        if (option === 'inspection completed') {
-          return report[title] == 'true';
-        } if (option === 'inspection not completed') {
-          return report[title] =='false';
-        } 
-      }
-       else if (title === 'weight') {
+      // else if (title === 'inspection') {
+      //   if (option === 'inspection completed') {
+      //     return report[title] == 'true';
+      //   } if (option === 'inspection not completed') {
+      //     return report[title] =='false';
+      //   } 
+      // }
+       else if (title === 'Weight') {
         if (option === 'below 100') {
           return report[title] < 100;
         } else if (option === '100 to 150') {
@@ -172,8 +184,10 @@ const Farm_user_manage = (props) => {
         }
       }
     });
-
+    console.log(reports,"filterdata")
+   
     return reports;
+   
   };
   const Sidebar = () => {
     return (
@@ -211,15 +225,14 @@ const Farm_user_manage = (props) => {
                         <div>
                         </div>
                         <div>
-                          <Card className=" table-card card-1">
+                          <Card className=" card-c card-1">
                             <Card.Header className="card-header">
                               <div>
-                                <h6 className="report">REPORTS</h6>
+                                <h6>REPORTS</h6>
                               </div>
                               <div className="table-header">
-                              <p className="sort">Sort by</p>
                                 <select id="title" name="title" className="dropdown-title" onChange={handleTitleChange}>
-                                  <option value="">Select</option>
+                                  <option value="">Sort by</option>
                                   {titles.map((title) => (
                                     <option key={title} value={title}>{title}</option>
                                   ))}
@@ -244,35 +257,43 @@ const Farm_user_manage = (props) => {
                                 <table>
                                   <thead>
                                     <tr>
-                                      <th>Unique IDs</th>
+                                      <th>ID</th>
+                                      <th>CurrentLocation</th>
+                                      <th>Name</th>
+                                      <th>BreedType</th>
+                                      <th>Color</th>
+                                      <th>Height</th>
+                                      <th>Time Inward</th>
+                                      <th>Traded_Born</th>
+                                      <th>Vaccinated</th>
                                       <th>Weight</th>
-                                      {/* <th>Traded or Newborn</th> */}
-                                      <th>Inspection</th>
-                                      <th>Vaccination</th>
-                                      <th>Date of Arrival</th>
-                                      <th>Time of Arrival</th>
-                                      <th>Location</th>
                                  </tr>
                                   </thead>
                                   <tbody>
-                                    {filterData().map((item, index) => (
-                                      <tr key={item.unique_id} className={`row-${index % 2}`}>
-                                        <td>{item.unique_id}</td>
-                                        <td>{item.weight}</td>
-                                        {/* <td className="traded-newborn">{item.traded_or_newborn}</td> */}
-                                        <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
-                                        <td>{item.vaccination_status == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
-                                        <td>{item.date_of_arrival}</td>
-                                        <td>{item.time_of_arrival}</td>
-                                        <td>{item.location}</td>
+                                    {filterData().slice(0,3).map((item, index) => (
+                                      <tr key={item.ID} className={`row-${index % 2}`}>
+                                        <td>{item.ID}</td>
+                                        <td>{item.CurrentLocation}</td>
+                                        <td>{item.Name}</td>
+                                        <td>{item.BreedType}</td>
+                                        <td>{item.Color}</td>
+                                        <td>{item.Height}</td>
+                                        <td>{item.Time_inward}</td>
+                                        <td>{item.Traded_Born}</td>
+                                        <td>{item.Vaccinated == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td>
+                                        <td>{item.Weight}</td>
+                                        {/* <td>{item.inspection == "true" && <img src={Yes} className="no2" /> || <img src={No} className="no1" />}</td> */}
+                                      
+                                      
                                       </tr>
                                     ))}
                                   </tbody>
                                 </table>
                               </div>
-                         
+                              <div className="view-more">
+                             
+                              </div> 
                             </Card.Body>
-                           
                           </Card>
                         </div>
                       </div>
