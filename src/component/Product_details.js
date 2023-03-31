@@ -13,12 +13,10 @@ import Cattle from '../assets/cattle.png';
 import Logout from "./Logout";
 import { useEffect } from "react";
 import { InfinitySpin } from 'react-loader-spinner'
-
 import Loader1 from './Loader';
 
 const Product_details = () => {
     const [records, setRecords] = useState([]);
-  
     const [flag, setFlag] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [show, setShow] = useState(false);
@@ -26,7 +24,6 @@ const Product_details = () => {
     const show_details = (show) => {
         setShow_detail(show);
     }
-   
     let Product_id = useParams().id;
     
     useEffect(() => {
@@ -41,7 +38,8 @@ const Product_details = () => {
         }
 
         async function fetchData() {
-            let data = await fetch('https://696ae6ee-9032-4134-b82c-2768a7f05662.mock.pstmn.io/GetHistoryOfProduct', {
+           
+                let data = await fetch(process.env.REACT_APP_BACKEND_HOST + "api/GetHistoryOfProduct", {
                                     method: 'POST',
                                     body: JSON.stringify(
                                         {
@@ -70,8 +68,6 @@ const Product_details = () => {
 
     const reversedRecords = [...records].reverse();
     console.log(reversedRecords)
-
-
     const navbarClass = scrollPosition > 0 ? "navbar1 shadow" : "navbar1";
     return (
         <div >
@@ -129,8 +125,6 @@ const Product_details = () => {
                                                    { (element.Vehicle[0]== "T" &&      
                                                     <img src={truck} onClick={() => show_details(element)} alt="Ship" className='truck'></img>
                                                     )}
-                                                   
-                                                    {/* <img src={arrow} alt="down_arrow" className='ship-arrow'></img> */}
                                                     </div>
                                                 </Col>
                                             </Row>)
