@@ -34,7 +34,11 @@ const Farm_user_dashboard = (props) => {
   
   useEffect(() => {
 
-    fetch(process.env.REACT_APP_BACKEND_HOST + "api/FarmHouseUser", {
+    fetch(
+   
+       "https://8af34d02-48a5-4696-8abf-8510e0a322bc.mock.pstmn.io/farmhouseuse",
+      //  process.env.REACT_APP_BACKEND_HOST + "api/FarmHouseUser",
+       {
       method: 'POST',
       body: JSON.stringify(
         {
@@ -129,20 +133,13 @@ function Manage() {
     if (!options.Name.includes(item.Name)) {
       options.Name.push(item.Name);
     }
-
-    if (!options.Vaccinated.includes(item.Vaccinated)) {
-      options.Vaccinated.push(item.Vaccinated);
-    }
-
-    if (!options.ParentProduct.includes(item.ParentProduct)) {
-      options.ParentProduct.push(item.ParentProduct);
-    }
-    
-    if (!options.ParentProduct.includes(item.ParentProduct)) {
-      options.ParentProduct.push(item.ParentProduct);
-    }
   
- 
+    if (!options.ParentProduct.includes(item.ParentProduct)) {
+      options.ParentProduct.push(item.ParentProduct);
+    }
+    if (!options.ParentProduct.includes(item.ParentProduct)) {
+      options.ParentProduct.push(item.ParentProduct);
+    }
     if (!options.BreedType.includes(item.BreedType)) {
       options.BreedType.push(item.BreedType);
     }
@@ -152,16 +149,54 @@ function Manage() {
     if (!options.Color.includes(item.Color)) {
       options.Color.push(item.Color);
     }
-    if (!options.Height.includes(item.Height)) {
-      options.Height.push(item.Height);
-    }
+    // if (!options.Height.includes(item.Height)) {
+    //   options.Height.push(item.Height);
+    // }
     if (!options.Traded_Born.includes(item.Traded_Born)) {
       options.Traded_Born.push(item.Traded_Born);
     }
-    if (!options.Weight.includes(item.Weight)) {
-      options.Weight.push(item.Weight);
-    }
+    console.log(item.Vaccinated,"Vaccinated")
 
+    // if (!options.Weight.includes(item.Weight)) {
+    //   options.Weight.push(item.Weight);
+    // }
+        if (item.Vaccinated =='true') {
+      if (!options.Vaccinated.includes('Vaccinated')) {
+        options.Vaccinated.push('Vaccinated');
+      }
+    } else if (item.Vaccinated =='false') {
+      if (!options.Vaccinated.includes('Non Vaccinated')) {
+        options.Vaccinated.push('Non Vaccinated');
+      }
+    }
+    if (item.Weight <= 100) {
+      if (!options.Weight.includes('Below100')) {
+        options.Weight.push('Below-100');
+      }
+    } else if (item.Weight >=101 && item.Weight<=150) {
+      if (!options.Weight.includes('101 To 120')) {
+        options.Weight.push('101 To 120');
+      }
+    }
+    else if (item.Weight >=151) {
+      if (!options.Weight.includes('Above-150')) {
+        options.Weight.push('Above-150');
+      }
+  }
+  if (item.Height <= 500) {
+    if (!options.Height.includes('Below-500')) {
+      options.Height.push('Below-500');
+    }
+  } else if (item.Height >=501 && item.Height<=1000) {
+    if (!options.Height.includes('501 To 1000')) {
+      options.Height.push('501 To 1000');
+    }
+  }
+  else if (item.Height >=1001) {
+    if (!options.Height.includes('Above-1000')) {
+      options.Height.push('Above-1000');
+    }
+}
    
   });
   useEffect(() => {
@@ -177,7 +212,6 @@ function Manage() {
 
   const navbarClass = scrollPosition > 0 ? "navbar1 shadow" : "navbar1";
 
-
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
     setOption(null);
@@ -191,13 +225,35 @@ function Manage() {
     if (!title || !option) {
       return details?.returnables.overall_reports;
     }
-    console.log(title,"title")
-    console.log(option,"option")
-    console.log(details.returnables.overall_reports[0].CurrentLocation,"curr")
-    console.log(details.returnables.overall_reports[0].Vaccinated,"vacci")
+
     const reports = details.returnables.overall_reports.filter(report => {
-      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === "Height" || title === 'Time_inward' || title === 'Weight'||title==="Vaccinated"||title==="Traded_Born" ) {
+      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === 'Time_inward' || title==="Traded_Born" ) {
         return report[title] === option;
+      }
+         else if (title === 'Vaccinated') {	
+        if (option === 'Vaccinated') {	
+          return report[title] == 'true';	
+        } if (option === 'Non Vaccinated') {	
+          return report[title] =='false';	
+        } 	
+      }
+      else if (title === 'Weight') {	
+        if (option === 'Below-100') {	
+          return report[title] <= 100;	
+        } else if (option === '101 To 120') {	
+          return report[title] >= 101 && report[title] <= 150;	
+        } else {	
+          return report[title] >= 151;	
+        }	
+      }
+      else if (title === 'Height') {	
+        if (option === 'Below-500') {	
+          return report[title] <= 1000;	
+        } else if (option === '501 To 1000') {	
+          return report[title] >= 501 && report[title] <= 1000;	
+        } else {	
+          return report[title] >= 1001;	
+        }	
       }
     });
     return reports;
@@ -430,7 +486,7 @@ function Manage() {
     return (
       <div>
         <Navbar className={navbarClass} expand="lg" fixed="top">
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="">
               <div className="title1">
@@ -504,7 +560,7 @@ function Manage() {
               </div>
               <div className="col-lg-6">
                 <div className="card card-1">
-                  {Cattleweightchart(details?.returnables.cattle_weight.below_100, details?.returnables.cattle_weight.range_101_150, details?.returnables.cattle_weight.more_150, ['Below 100', 'Range 100-150', 'Above 150'], "CATTLE WEIGHT", 430)}
+                  {Cattleweightchart(details?.returnables.cattle_weights.below_100, details?.returnables.cattle_weights.range_101_150, details?.returnables.cattle_weights.more_150, ['Below 100', 'Range 100-150', 'Above 150'], "CATTLE WEIGHT", 430)}
                 </div>
               </div>
               <div>

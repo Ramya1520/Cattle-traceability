@@ -25,8 +25,7 @@ import { useLocation } from "react-router-dom";
 const Farm_user_manage = (props) => {
   const location = useLocation();
   const details = location.state?.de
-  // const [details, setDetails] = useState({ vaccination_status: { "yes": 20, "no": 80 }, traded_or_newborn: { "traded": 40, "new_born": 60 }, location: { "india": 4, "china": 90, "america": 6 }, farm_name: { "variety": 10, "cultivatio": 60, "ogo": 30 }, cattle_count_perday: { "hr_0_3": 9, "hr_4_7": 50, "hr_8_11": 7, "hr_12_15": 80, "hr_16_19": 9, "hr_20_23": 93 }, cattle_count_perweek: { "day1": 90, "day2": 50, "day3": 56, "day4": 80, "day5": 67, "day6": 93 }, cattle_weights: { "below_100": 25, "range_100_150": 35, "more_150": 40 }, overall_report: [{ "unique_id": "PRO1", "weight": 89, "inspection": "true", "farm_name": "ogo", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "Traded", "vaccination_status": "true" }, { "unique_id": "PRO2", "weight": 150, "inspection": "true", "farm_name": "variety", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "New_born", "vaccination_status": "false" }, { "unique_id": "PRO4", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "New_born", "vaccination_status": "true" }, { "unique_id": "PRO7", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "30-Jan-2023", "time_of_arrival": "08:50:55", "location": "India", "traded_or_newborn": "New_born", "vaccination_status": "true"}, { "unique_id": "PRO5", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "20-Jan-2023", "time_of_arrival": "08:50:55", "location": "China", "traded_or_newborn": "New_born", "vaccination_status": "true"}, { "unique_id": "PRO6", "weight": 120, "inspection": "false", "farm_name": "cultivatio", "date_of_arrival": "30-Feb-2023", "time_of_arrival": "08:51:55", "location": "China", "traded_or_newborn": "New_born", "vaccination_status": "true"}] })
-  console.log(details,"details")
+  console.log(details,"details...............")
   const [table, setTable] = useState(false)
   const [show, setShow] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -36,20 +35,20 @@ const Farm_user_manage = (props) => {
   const titles = Object.keys(details?.returnables?.overall_reports[0]);
 
   const navigate = useNavigate();
-  // const titles = ['uniquess_id', 'weight', 'inspection', 'farm_name', 'date_of_arrival', 'time_of_arrival', 'location'];
- 
-  const options = {
-    'CurrentLocation': [],
-    'ID': [],
-    'Name': [],
-    'ParentProduct': [],
-    'BreedType': [],
-    'Color': [],
-    'Height':[],
-    'Time_inward': [],
-    'Traded_Born': [],
-    'Vaccinated':[],
-    'Weight':[]  };
+
+    const options = {
+      'CurrentLocation': [],
+      'ID': [],
+      'Name': [],
+      'ParentProduct': [],
+      'BreedType': [],
+      'Color': [],
+      'Height':[],
+      'Time_inward': [],
+      'Traded_Born': [],
+      'Vaccinated':[],
+      'Weight':[] 
+     };
   const App_user="EMP002"
  
   const handleClick = () => {
@@ -58,8 +57,7 @@ const Farm_user_manage = (props) => {
       behavior: 'smooth',
     });
   }
-  
-  details.returnables.overall_reports.forEach((item) => {
+  details?.returnables.overall_reports.forEach((item) => {
     if (!options.CurrentLocation.includes(item.CurrentLocation)) {
       options.CurrentLocation.push(item.CurrentLocation);
     }
@@ -69,26 +67,13 @@ const Farm_user_manage = (props) => {
     if (!options.Name.includes(item.Name)) {
       options.Name.push(item.Name);
     }
+  
     if (!options.ParentProduct.includes(item.ParentProduct)) {
       options.ParentProduct.push(item.ParentProduct);
     }
-    if (item.Weight < 100) {
-      if (!options.Weight.includes('below 100')) {
-        options.Weight.push('below 100');
-      }
-    } else if (item.Weight <= 150) {
-      if (!options.Weight.includes('100 to 150')) {
-        options.Weight.push('100 to 150');
-      }
-    } else {
-      if (!options.Weight.includes('above 150')) {
-        options.Weight.push('above 150');
-      }
+    if (!options.ParentProduct.includes(item.ParentProduct)) {
+      options.ParentProduct.push(item.ParentProduct);
     }
-    if (!options.Vaccinated.includes(item.Vaccinated)) {
-      options.Vaccinated.push(item.Vaccinated);
-    }
- 
     if (!options.BreedType.includes(item.BreedType)) {
       options.BreedType.push(item.BreedType);
     }
@@ -98,35 +83,56 @@ const Farm_user_manage = (props) => {
     if (!options.Color.includes(item.Color)) {
       options.Color.push(item.Color);
     }
-    if (!options.Height.includes(item.Height)) {
-      options.Height.push(item.Height);
-    }
+    // if (!options.Height.includes(item.Height)) {
+    //   options.Height.push(item.Height);
+    // }
     if (!options.Traded_Born.includes(item.Traded_Born)) {
       options.Traded_Born.push(item.Traded_Born);
     }
-    
-    // if (item.inspection =='true') {
-    //   if (!options.inspection.includes('inspection completed')) {
-    //     options.inspection.push('inspection completed');
-    //   }
-    // } else if (item.inspection =='false') {
-    //   if (!options.inspection.includes('inspection not completed')) {
-    //     options.inspection.push('inspection not completed');
-    //   }
-    // }
-      // if (item.vaccination_status =='true') {
-    //   if (!options.vaccination_status.includes('Vaccinated')) {
-    //     options.vaccination_status.push('Vaccinated');
-    //   }
-    // } else if (item.vaccination_status =='false') {
-    //   if (!options.vaccination_status.includes('Non Vaccinated')) {
-    //     options.vaccination_status.push('Non Vaccinated');
-    //   }
-    // }
+    console.log(item.Vaccinated,"Vaccinated")
 
+    // if (!options.Weight.includes(item.Weight)) {
+    //   options.Weight.push(item.Weight);
+    // }
+        if (item.Vaccinated =='true') {
+      if (!options.Vaccinated.includes('Vaccinated')) {
+        options.Vaccinated.push('Vaccinated');
+      }
+    } else if (item.Vaccinated =='false') {
+      if (!options.Vaccinated.includes('Non Vaccinated')) {
+        options.Vaccinated.push('Non Vaccinated');
+      }
+    }
+    if (item.Weight <= 100) {
+      if (!options.Weight.includes('Below100')) {
+        options.Weight.push('Below-100');
+      }
+    } else if (item.Weight >=101 && item.Weight<=150) {
+      if (!options.Weight.includes('101 To 120')) {
+        options.Weight.push('101 To 120');
+      }
+    }
+    else if (item.Weight >=151) {
+      if (!options.Weight.includes('Above-150')) {
+        options.Weight.push('Above-150');
+      }
+  }
+  if (item.Height <= 500) {
+    if (!options.Height.includes('Below-500')) {
+      options.Height.push('Below-500');
+    }
+  } else if (item.Height >=501 && item.Height<=1000) {
+    if (!options.Height.includes('501 To 1000')) {
+      options.Height.push('501 To 1000');
+    }
+  }
+  else if (item.Height >=1001) {
+    if (!options.Height.includes('Above-1000')) {
+      options.Height.push('Above-1000');
+    }
+}
    
   });
-  
   
   useEffect(() => {
     const handleScroll = () => {
@@ -152,43 +158,45 @@ const Farm_user_manage = (props) => {
   };
   const filterData = () => {
     if (!title || !option) {
-      return details.returnables.overall_reports;
+      return details?.returnables.overall_reports;
     }
-    console.log("filterdata")
+
     const reports = details.returnables.overall_reports.filter(report => {
-      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === "Height" || title === 'Time_inward' || title === 'Weight'||title==="Traded_Born" ) {
+      if (title === 'CurrentLocation' || title === 'ID' || title === 'Name' || title === 'ParentProduct' || title === 'BreedType' || title === 'Color' || title === 'Time_inward' || title==="Traded_Born" ) {
         return report[title] === option;
       }
-      //  else if (title === 'Vaccinated') {
-      //   if (option === 'Vaccinated') {
-      //     return report[title] == true;
-      //   } if (option === 'Non Vaccinated') {
-      //     return report[title] ==false;
-      //   } 
-      // }
-
-      // else if (title === 'inspection') {
-      //   if (option === 'inspection completed') {
-      //     return report[title] == 'true';
-      //   } if (option === 'inspection not completed') {
-      //     return report[title] =='false';
-      //   } 
-      // }
-       else if (title === 'Weight') {
-        if (option === 'below 100') {
-          return report[title] < 100;
-        } else if (option === '100 to 150') {
-          return report[title] >= 100 && report[title] <= 150;
-        } else {
-          return report[title] > 150;
-        }
+         else if (title === 'Vaccinated') {	
+        if (option === 'Vaccinated') {	
+          return report[title] == 'true';	
+        } if (option === 'Non Vaccinated') {	
+          return report[title] =='false';	
+        } 	
+      }
+      else if (title === 'Weight') {	
+        if (option === 'Below-100') {	
+          return report[title] <= 100;	
+        } else if (option === '101 To 120') {	
+          return report[title] >= 101 && report[title] <= 150;	
+        } else {	
+          return report[title] >= 151;	
+        }	
+      }
+      else if (title === 'Height') {	
+        if (option === 'Below-500') {	
+          return report[title] <= 1000;	
+        } else if (option === '501 To 1000') {	
+          return report[title] >= 501 && report[title] <= 1000;	
+        } else {	
+          return report[title] >= 1001;	
+        }	
       }
     });
-    console.log(reports,"filterdata")
-   
     return reports;
    
   };
+  const data=filterData()
+  console.log(data,"data")
+
   const Sidebar = () => {
     return (
       <div>
@@ -270,7 +278,7 @@ const Farm_user_manage = (props) => {
                                  </tr>
                                   </thead>
                                   <tbody>
-                                    {filterData().slice(0,3).map((item, index) => (
+                                    {data.map((item, index) => (
                                       <tr key={item.ID} className={`row-${index % 2}`}>
                                         <td>{item.ID}</td>
                                         <td>{item.CurrentLocation}</td>
